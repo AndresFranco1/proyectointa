@@ -1,0 +1,24 @@
+.question {
+    margin-bottom: 2rem;
+}
+.star-rating {
+    direction: rtl;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.star-rating input {
+    display: none;
+}
+.star-rating label {
+    color: #ddd;
+    cursor: pointer;
+}
+.star-rating :checked ~ label {
+    color: #ffc107;
+}
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #ffc107;
+}

@@ -1,0 +1,21 @@
+{% extends 'registration/navigatebar.html' %}
+{% block content %}
+
+<head></head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de preguntas</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/lista_preguntas.css' %}">
+</head>
+    <h1 class="title">Lista de preguntas</h1>
+    {% for pregunta in preguntas %}
+    <li class="preguntas">
+        {{ pregunta.texto_pregunta }}
+        <form action="{% url 'eliminar_pregunta' pk=pregunta.pk %}" method = "post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar esta pregunta? Junto con ella se eliminaran todas las respuestas asociadas a ella');">Eliminar</button>
+        </form>
+    {% endfor %}
+
+{% endblock %}

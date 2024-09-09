@@ -1,0 +1,61 @@
+{% extends 'registration/navigatebar.html' %}
+{% block content %}
+{% load static %}
+<head>
+    <title>Resultados de Puntuaciones</title>
+    <link rel="stylesheet" href="{% static 'estadisticas_resultados.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <h1>Resultados</h1>
+    <div class="preguntas-container">
+        {% for resultado in resultados %}
+            <div class="pregunta-block">
+                <h2>{{ resultado.pregunta.texto_pregunta }}</h2>
+                <p>Total de respuestas: {{ resultado.total_respuestas }}</p>
+                <div class="grafico-y-referencias">
+                    <ul >
+                        <li>1 estrella: {{ resultado.conteos.1 |default_if_none:"0"|safe }} ({{ resultado.porcentajes.1 }}%)</li>
+                        <li>2 estrellas: {{ resultado.conteos.2 |default_if_none:"0"|safe }} ({{ resultado.porcentajes.2 }}%)</li>
+                        <li>3 estrellas: {{ resultado.conteos.3 |default_if_none:"0"|safe }} ({{ resultado.porcentajes.3 }}%)</li>
+                        <li>4 estrellas: {{ resultado.conteos.4 |default_if_none:"0"|safe }} ({{ resultado.porcentajes.4 }}%)</li>
+                        <li>5 estrellas: {{ resultado.conteos.5 |default_if_none:"0"|safe }} ({{ resultado.porcentajes.5 }}%)</li>
+                    </ul>
+                    <canvas id="graficoTorta{{ forloop.counter }}" class="grafico-torta"></canvas>
+                    <script>
+                        var ctx = document.getElementById('graficoTorta{{ forloop.counter }}').getContext('2d');
+                        var graficoTorta = new Chart(ctx, {
+                            type: 'pie',
+                            data: {
+                                labels: ['1 estrella', '2 estrellas', '3 estrellas', '4 estrellas', '5 estrellas'],
+                                datasets: [{
+                                    data: [
+                                        {{ resultado.conteos.1|default_if_none:"0"|safe }},
+                                        {{ resultado.conteos.2|default_if_none:"0"|safe }},
+                                        {{ resultado.conteos.3|default_if_none:"0"|safe }},
+                                        {{ resultado.conteos.4|default_if_none:"0"|safe }},
+                                        {{ resultado.conteos.5|default_if_none:"0"|safe }}
+                                    ],
+                                    backgroundColor: [
+                                        '#FF6384',
+                                        '#36A2EB',
+                                        '#FFCE56',
+                                        '#4BC0C0',
+                                        '#9966FF'
+                                    ]
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+
+
+{% endblock %}

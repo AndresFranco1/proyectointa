@@ -1,0 +1,38 @@
+body{
+    background-color: #abe8d6;
+}
+
+.title {
+    text-align: center;
+    text-decoration: underline;
+    color: #d23232; /* Color oscuro para un buen contraste */
+    font-size: 2.5rem;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif; /* Fuente más atractiva */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+    transition: color 0.3s, text-shadow 0.3s; /* Transición suave */
+}
+
+.title:hover {
+    color: #b02434; /* Cambia el color del texto al pasar el mouse */
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* Intensifica la sombra */
+}
+
+.preguntas{
+    text-align: center;
+    color: black;
+}
+
+.preguntas {
+    list-style-type: none; /* Elimina los puntos de la lista */
+    padding-left: 0px; /* Quita el espacio a la izquierda */
+}
+
+/* Agrega un círculo personalizado antes de cada item */
+.preguntas::before {
+    content: "●"; /* Símbolo de círculo */
+    color: #20c997; /* Verde */
+    font-size: 1.3rem; /* Tamaño más grande */
+    margin-right: 2px; /* Espacio entre el círculo y el texto */
+}

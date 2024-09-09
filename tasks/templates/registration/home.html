@@ -1,0 +1,42 @@
+{% extends 'registration/navigatebar.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'home.css' %}">
+    </head>
+    <body>
+        <h1>INTA Jornada 25 años</h1>
+        <!-- <video width="600" height="480" controls>
+            <source src="">
+        </video> -->
+        <div class="video-container">
+            <video class="video" controls>
+                <source src="{% static 'videos/Video INTA.mp4' %}" type="video/mp4">
+            </video>
+        </div>
+        <div class="image-container">
+            <a href="{% url 'posta1' %}">
+                <img src="{% static 'images/img1.png' %}" alt="Posta 1">
+            </a>
+            <a href="{% url 'posta2' %}">
+                <img src="{% static 'images/img2.png' %}" alt="Posta 2">
+            </a>
+            <a href="{% url 'posta3' %}">
+                <img src="{% static 'images/img3.png' %}" alt="Posta 3">
+            </a>
+            <a href="{% url 'posta4' %}">
+                <img src="{% static 'images/img4.png' %}" alt="Posta 4">
+            </a>
+        </div>
+    </body>
+    </html>
+{% else %}
+    <p>Debes <a href="{% url 'login' %}">iniciar sesión</a> para ver esta página.</p>
+{% endif %}
+{% endblock %}

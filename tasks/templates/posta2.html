@@ -1,0 +1,33 @@
+{% extends 'registration/navigatebar.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <title>Sign Up</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/posta.css' %}">
+</head>
+<body>
+    <h1 class="title">Segunda estación: LA CARPA MÁGICA (Posta 2)</h1>
+    <p class="container">
+    En la segunda estación denominada “La Carpa Mágica”, los conceptos introducidos en 
+    la primera estación son discutidos y profundizados. Bajo esta carpa especial se 
+    encuentra una calicata: un gran pozo en el suelo de aproximadamente 2 m de 
+    profundidad, 15 m de largo y 3 m de ancho. Esta calicata permite explorar en detalle los 
+    componentes del suelo, sus diferentes horizontes, su origen, así como los animales, 
+    insectos y plantas que lo habitan y el efecto que tienen sobre él. <br>
+    Durante esta actividad, los profesionales del INTA exponen sobre la importancia del 
+    suelo en la producción de leche, que es una de las principales actividades agropecuarias 
+    de la región. Además, se abordan temas como la influencia del clima sobre el suelo y su 
+    relación con la salud del medio ambiente.
+    </p>
+    <a href="{% url 'home' %}">
+        <i class="bi bi-arrow-left-circle-fill arrow-icon"></i>
+    </a> 
+</body>
+{% endblock %}

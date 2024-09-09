@@ -1,0 +1,19 @@
+{% extends 'registration/navigatebar.html' %}
+{% block content %}
+    <title>Lista de Escuelas</title>
+    </head>
+    <body>
+        <h1>Lista de Escuelas</h1>
+        <ul>
+            {% for escuela in escuelas %}
+                <li>{{ escuela.nombre_escuela }}
+                    <form action="{% url 'eliminar_escuela' pk=escuela.pk %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar esta escuela? Junto con ella se eliminaran todos los usuarios asociados');">Eliminar</button>
+                    </form>
+                   
+                </li>
+            {% endfor %}
+        </ul>
+    </body>
+{% endblock %}

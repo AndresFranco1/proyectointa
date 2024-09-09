@@ -1,0 +1,41 @@
+{% extends 'registration/navigatebar.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <title>Sign Up</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/posta.css' %}">
+</head>
+<body>
+    <h1 class="title">Primera estación: LA GOTA PAVOTA (Posta 1)</h1>
+    <p class="container">
+    Recepción y bienvenida. <br>
+    Los estudiantes son recibidos en el salón principal de la 
+    Experimental y se les explica el recorrido que realizarán durante la jornada. Para 
+    comenzar, disfrutan de una obra de teatro unipersonal a cargo del Licenciado en 
+    Edafología y actor José Ignacio Serralunga. Durante esta presentación, introduce a los 
+    niños en los conceptos fundamentales vinculados a la conservación del suelo, los 
+    recursos naturales y su uso sustentable. <br>
+    En la obra, la protagonista es una gota de lluvia llamada “Gota Pavota”, quien realiza un 
+    recorrido por el campo y se va encuentra con los diferentes habitantes del suelo 
+    (hormigas, arañas, ciempiés, lombrices, hongos, bacterias). Durante este encuentro, 
+    ellos le expresan su preocupación por el estado del suelo, debido al mal que se hace de 
+    él. Durante la conversación entre los personajes se abordan temas como la erosión, el 
+    uso indebido de los agroquímicos, extracción de los nutrientes sin reposición y el uso de 
+    maquinaria que remueve mucho el suelo. <br>
+    El mensaje final que se transmite a los chicos 
+    es la importancia de cuidar el suelo, proporcionando las herramientas para poder hacerlo
+    y las posibles consecuencias en caso de no cuidarlo adecuadamente.
+    </p>
+
+    <a href="{% url 'home' %}">
+        <i class="bi bi-arrow-left-circle-fill arrow-icon"></i>
+    </a>
+</body>
+{% endblock %}

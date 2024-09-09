@@ -1,0 +1,90 @@
+.contenedor {
+    display: flex;
+    border-bottom: 1px solid #e2c08d; /* Línea divisoria opcional entre filas, marrón claro */
+    text-align: center;
+}
+
+.columna {
+    flex: 1; /* Esto hace que todas las columnas tengan el mismo ancho */
+    padding: 10px;
+    border: 1px solid #b29861; /* Borde marrón suave para visualizar mejor */
+    box-sizing: border-box; /* Incluye padding en el ancho total */
+    background-color: #f7f4d1; /* Fondo amarillo claro */
+    color: #3e5f38; /* Texto verde oscuro para buen contraste */
+    text-align: center;
+}
+
+.contenedor:nth-of-type(1) {
+    font-weight: bold; /* Negrita para la fila de encabezados */
+    background-color: #91b77d; /* Fondo verde suave para el encabezado */
+    color: #ffffff; /* Texto blanco en el encabezado */
+    text-align: center;
+}
+
+body {
+    background-color: #f3efd8; /* Fondo de la página, amarillo muy claro */
+    color: #3e5f38; /* Texto general, verde oscuro */
+}
+
+button {
+    background-color: #91b77d; /* Fondo del botón, verde suave */
+    color: #ffffff; /* Texto del botón, blanco */
+    border: 1px solid #3e5f38; /* Borde del botón, verde oscuro */
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b29861; /* Cambio de color al pasar el mouse, marrón suave */
+}
+
+label {
+    color: #3e5f38; /* Color del texto en las etiquetas, verde oscuro */
+}
+input[type="text"], select {
+    width: 200px; /* Ancho del campo de entrada */
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #b29861; /* Borde marrón claro */
+    border-radius: 8px; /* Bordes redondeados */
+    background-color: #f3efd8; /* Fondo amarillo muy claro */
+    color: #3e5f38; /* Color del texto verde oscuro */
+    font-size: 14px;
+}
+
+input[type="text"]::placeholder {
+    color: #8f8f8f; /* Color del texto placeholder */
+}
+
+button {
+    background-color: #91b77d; /* Fondo del botón, verde suave */
+    color: #ffffff; /* Texto del botón, blanco */
+    border: 1px solid #3e5f38; /* Borde del botón, verde oscuro */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease; /* Transición suave en el hover */
+}
+
+button:hover {
+    background-color: #b29861; /* Cambio de color al pasar el mouse, marrón suave */
+}
+
+label {
+    color: #3e5f38; /* Color del texto en las etiquetas, verde oscuro */
+    font-weight: bold; /* Texto en negrita para destacar las etiquetas */
+    margin-right: 10px;
+}
+
+form {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos del formulario */
+    justify-content: space-between; /* Espacio entre los elementos */
+    flex-wrap: wrap; /* Permite que los elementos se ajusten en varias líneas si es necesario */
+    background-color: #f7f4d1; /* Fondo amarillo claro del formulario */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}

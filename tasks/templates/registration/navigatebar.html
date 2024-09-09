@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Site{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'navigatebar.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <ul>
+                <li>
+                    <a aria-current="page" href="{% url 'home' %}">
+                        <i class="bi bi-house"></i> <!-- Ícono de 'Home' -->
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'game' %}">
+                        <i class="bi bi-controller"></i> <!-- Ícono de 'Juego' -->
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'puntuar_preguntas' %}">
+                        <i class="bi bi-star"></i> <!-- Ícono de 'Preguntas' -->
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'story' %}">
+                        <i class="bi bi-book"></i> <!-- Ícono de 'Historia INTA' -->
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'settings' %}">
+                        <i class="bi bi-gear"></i> <!-- Ícono de 'Configuración' -->
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

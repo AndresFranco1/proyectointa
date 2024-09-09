@@ -1,0 +1,36 @@
+{% extends 'registration/navigatebar.html' %}
+
+{% block content %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Puntuación</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'puntuar_preguntas.css' %}">
+</head>
+<body>
+    <h1>Sistema de Puntuación</h1>
+    <form method="POST" action="/puntuar_pregunta/">
+        {% csrf_token %}
+        {% for pregunta in preguntas %}
+            <div class="question">
+                <h3>{{ pregunta.texto_pregunta }}</h3>
+                <div class="star-rating">
+                    <input type="radio" id="estrellas_{{ pregunta.id }}_5" name="estrellas_{{ pregunta.id }}" value="5">
+                    <label for="estrellas_{{ pregunta.id }}_5"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="estrellas_{{ pregunta.id }}_4" name="estrellas_{{ pregunta.id }}" value="4">
+                    <label for="estrellas_{{ pregunta.id }}_4"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="estrellas_{{ pregunta.id }}_3" name="estrellas_{{ pregunta.id }}" value="3">
+                    <label for="estrellas_{{ pregunta.id }}_3"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="estrellas_{{ pregunta.id }}_2" name="estrellas_{{ pregunta.id }}" value="2">
+                    <label for="estrellas_{{ pregunta.id }}_2"><i class="fas fa-star"></i></label>
+                    <input type="radio" id="estrellas_{{ pregunta.id }}_1" name="estrellas_{{ pregunta.id }}" value="1">
+                    <label for="estrellas_{{ pregunta.id }}_1"><i class="fas fa-star"></i></label>
+                </div>
+        {% endfor %}
+
+        <button type="submit">Enviar</button>
+    </form>
+
+</body>
+{% endblock %}

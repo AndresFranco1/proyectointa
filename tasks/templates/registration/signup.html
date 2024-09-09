@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'signin.css' %}">
+</head>
+<body>
+    <div class="scroll-container"></div>
+    <div class="signup-container">
+        <h2>Registro</h2>
+        <div class="logo-container">
+            <img src="{% static 'images/user-img.svg' %}" alt="User Logo">
+        </div>
+        <p>¿Ya estás registrado? <a href="{% url 'login' %}">Ingresar</a></p>
+        <form id="signup-form" action="{% url 'signup' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_first_name">Nombre</label>
+                <input type="text" id="id_first_name" name="first_name" pattern="[A-Za-z]+" title="El nombre no debe contener números ni símbolos, solo letras." required value="{{ form.first_name.value|default_if_none:'' }}">
+                {% if form.first_name.errors %}
+                    <div class="error">{{ form.first_name.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_last_name">Apellido</label>
+                <input type="text" id="id_last_name" name="last_name" pattern="[A-Za-z]+" title="El apellido no debe contener números ni símbolos, solo letras." required value="{{ form.last_name.value|default_if_none:'' }}">
+                {% if form.last_name.errors %}
+                    <div class="error">{{ form.last_name.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_username">Nombre de usuario</label>
+                <input type="text" id="id_username" name="username" required value="{{ form.username.value|default_if_none:'' }}">
+                {% if form.username.errors %}
+                    <div class="error">{{ form.username.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_school">Escuela</label>
+                <select name="school" id="id_school" required>
+                    {% for school in escuelas %}
+                        {% if school.nombre_escuela != "Inta" %}  <!-- Ocultar la escuela INTA -->
+                            <option value="{{ school.id }}" {% if school.id == form.school.value %} selected{% endif %}>
+                                {{ school.nombre_escuela }}
+                            </option>
+                        {% endif %}
+                    {% endfor %}
+                <select>
+                {% if form.school.errors %}
+                    <div class="error">{{ form.school.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_password">Contraseña</label>
+                <input type="password" id="id_password" name="password" minlength="5" required>
+                {% if form.password.errors %}
+                    <div class="error">{{ form.password.errors }}</div>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="id_password2">Confirmar Contraseña</label>
+                <input type="password" id="id_password2" name="password2" minlength="5" required>
+                {% if form.password2.errors %}
+                    <div class="error">{{ form.password2.errors }}</div>
+                {% endif %}
+            </div>
+            <button type="submit">Registrarse</button>
+            {% for message in messages %}
+                <div class="message">{{ message }}</div>
+            {% endfor %}
+        </form>
+    </div>
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            var password = document.getElementById('id_password').value;
+            var confirmPassword = document.getElementById('id_password2').value;
+            if (password !== confirmPassword) {
+                alert('Las contraseñas no coinciden.');
+                event.preventDefault(); // Evita el envío del formulario
+            } else if (password.length < 5) {
+                alert('La contraseña debe tener al menos 5 caracteres.');
+                event.preventDefault(); // Evita el envío del formulario
+            }
+        });
+    </script>
+</body>
+</html>

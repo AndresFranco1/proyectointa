@@ -1,0 +1,91 @@
+{% extends 'registration/navigatebar.html' %}
+
+{% block content %}
+{% load static %}
+
+<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulario Escuela</title>
+        <!-- Enlazar el archivo CSS -->
+        <link rel="stylesheet" href="{% static 'ingresar_escuela.css' %}">
+    </head>
+    <form action="/ingresar_escuela/" method="POST" >
+        <link rel="stylesheet" href="{% static 'ingresar_escuela.css' %}">
+
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="nombre_escuela">Nombre Escuela:</label>
+            {{ form.nombre_escuela }}
+            {% if form.nombre_escuela.errors %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for error in form.nombre_escuela.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    
+    
+        <div class="form-group">
+            <label for="numero_escuela">Número Escuela:</label>
+            {{ form.numero_escuela }}
+            {% if form.numero_escuela.errors %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for error in form.numero_escuela.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="direccion_escuela">Dirección Escuela:</label>
+            {{ form.direccion_escuela }}
+            {% if form.direccion_escuela.errors %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for error in form.direccion_escuela.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    
+        <div class="form-group">
+            <label for="localidad_escuela">Localidad Escuela:</label>
+            {{ form.localidad_escuela}}
+            {% if form.localidad_escuela.errors %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for error in form.localidad_escuela.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        <!-- {{ form.as_p }} -->
+        <!-- {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}-->
+        <button type="submit" class="btn-submit">
+            Ingresar escuela
+        </button>
+    </form> 
+</body>
+{% endblock %}
+
+    

@@ -1,0 +1,53 @@
+{% extends 'registration/navigatebar.html' %}
+
+{% block content %}
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Información de Usuarios</title>
+        <link rel="stylesheet" href="{% static 'info_usuarios.css' %}">
+    </head>
+    <body>
+
+        <form method="GET" action="{% url 'info_usuarios' %}">
+            <label for="escuela">Escuela:</label>
+            <select name="escuela" id="escuela">
+                <option value="">-- Seleccionar Escuela --</option>
+                {% for escuela in escuelas %}
+                    <option value="{{ escuela.nombre_escuela }}" 
+                        {% if request.GET.escuela == escuela.nombre_escuela %} selected {% endif %}>
+                        {{ escuela.nombre_escuela }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="first_name" id="nombre" value="{{ request.GET.first_name }}">
+
+            <label for="apellido">Apellido:</label>
+            <input type="text" name="last_name" id="apellido" value="{{ request.GET.last_name }}">
+
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" value="{{ request.GET.username }}">
+
+            <button type="submit">Filtrar</button>
+        </form>
+
+        <div class="contenedor">
+            <div class="columna">NOMBRE</div>
+            <div class="columna">APELLIDO</div>
+            <div class="columna">ESCUELA</div>
+            <div class="columna">USERNAME</div>
+        </div>
+
+        {% for usuario in usuarios %}
+        <div class="contenedor">
+            <div class="columna">{{ usuario.first_name }}</div>
+            <div class="columna">{{ usuario.last_name }}</div>
+            <div class="columna">{{ usuario.school.nombre_escuela }}</div>
+            <div class="columna">{{ usuario.username }}</div>
+        </div>
+        {% endfor %}
+    </body>
+{% endblock %}
