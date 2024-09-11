@@ -1,51 +1,162 @@
 body {
-    background-color: #d6eee3; /* Color de fondo */
-    color: black;
+    background-color: #d6eee3; /* Fondo suave y amigable */
+    font-family: 'Comic Sans MS', sans-serif;
     margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow-x: hidden; /* Evitar desplazamiento horizontal */
+    padding: 20px;
+    text-align: center;
 }
 
-.container {
-    width: 603.2px;
-    max-width: 100%; /* Asegura que el contenedor no exceda el ancho de la pantalla */
-    background-color: white;  /* Cambia el color si es necesario */
-    padding: 20px; /* Añadir padding para un mejor diseño */
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column; /* Organiza los elementos verticalmente */
-    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+.station-title {
+    color: #2e7d32; /* Verde natural */
+    font-size: 28px;
+    margin-bottom: 20px;
 }
 
 .content {
-    flex-grow: 1;
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.arrow {
-    margin-top: 20px; /* Añade un pequeño margen superior para separar la flecha del texto */
-    text-align: center; /* Centra la flecha */
-}
-
-.title {
-    text-align: center;
+p {
+    color: #555;
+    font-size: 18px;
+    line-height: 1.6;
     margin: 20px 0;
-    color: black;
-    font-size: 2em;
 }
 
-@media (max-width: 620px) {
-    .container {
-        width: 95%; 
-        padding: 15px; /* Ajustar padding para pantallas más pequeñas */
-    }
-    
-    .title {
-        font-size: 1.5em;
-    }
+.content-image {
+    display: block;
+    margin: 0 auto 20px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+.conditions-title {
+    color: #ff6f61; /* Color destacado */
+    font-size: 26px; /* Tamaño de fuente mayor */
+    font-weight: bold; /* Negrita */
+    margin-top: 30px;
+    border-bottom: 3px solid #ff6f61; /* Línea decorativa */
+    padding-bottom: 10px;
 }
 
+.conditions-list {
+    list-style-type: disc;
+    margin-left: 20px;
+    color: #2c3e50;
+    font-size: 18px; /* Tamaño de fuente mayor */
+}
+
+.conditions-list li {
+    margin-bottom: 15px; /* Espacio mayor entre los elementos */
+    padding-left: 10px; /* Espacio adicional a la izquierda */
+    border-left: 3px solid #ff6f61; /* Línea decorativa a la izquierda */
+}
+.back-link {
+    display: inline-block;
+    margin-top: 30px;
+    text-decoration: none;
+    color: #ff5722; /* Naranja vibrante */
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: #ff7043;
+}
+
+.arrow-icon {
+    margin-right: 10px;
+    vertical-align: middle;
+    font-size: 1.5rem;
+}
+
+/*carrusel*/
+.carousel {
+    position: relative;
+    width: 80%;
+    max-width: 600px; /* Tamaño fijo del carrusel */
+    height: 400px; /* Altura fija para asegurar un marco consistente */
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 8px; /* Bordes más suaves */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease;
+    height: 100%; /* Asegura que las imágenes llenen el contenedor */
+    width: 100%; /* Asegura que el contenedor de los slides ocupe todo el ancho del carrusel */
+
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%; /* Asegura que las imágenes llenen el contenedor */
+    box-sizing: border-box;
+    display: flex; /* Asegura que las imágenes se centren correctamente */
+    justify-content: center; /* Centra las imágenes horizontalmente */
+    align-items: center; /* Centra las imágenes verticalmente */
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor sin distorsionarse */
+    object-position: center; /* Centra la imagen dentro del contenedor */
+    border-radius: 8px; /* Bordes más suaves */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Marco más pequeño */
+}
+
+.carousel input[type="radio"] {
+    display: none;
+}
+
+.carousel-controls {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.control-dot {
+    display: inline-block;
+    width: 15px; /* Aumento del tamaño de los puntos */
+    height: 15px; /* Aumento del tamaño de los puntos */
+    margin: 0 8px; /* Espacio adicional para mejor visibilidad */
+    background-color: #2e7d32;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.control-dot:hover {
+    transform: scale(1.2); /* Aumento de tamaño en hover */
+}
+.carousel input[type="radio"]:nth-of-type(1):checked ~ .slides {
+    transform: translateX(0%);
+}
+
+.carousel input[type="radio"]:nth-of-type(2):checked ~ .slides {
+    transform: translateX(-100%);
+}
+
+.carousel input[type="radio"]:nth-of-type(3):checked ~ .slides {
+    transform: translateX(-200%);
+}
+
+.carousel input[type="radio"]:nth-of-type(4):checked ~ .slides {
+    transform: translateX(-300%);
+}
+
+.carousel input[type="radio"]:nth-of-type(1):checked ~ .carousel-controls .control-dot:nth-of-type(1),
+.carousel input[type="radio"]:nth-of-type(2):checked ~ .carousel-controls .control-dot:nth-of-type(2),
+.carousel input[type="radio"]:nth-of-type(3):checked ~ .carousel-controls .control-dot:nth-of-type(3),
+.carousel input[type="radio"]:nth-of-type(4):checked ~ .carousel-controls .control-dot:nth-of-type(4) {
+    background-color: #ff6f61; /* Color destacado */
+}

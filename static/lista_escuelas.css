@@ -1,0 +1,81 @@
+body {
+    background-color: #d6eee3; /* Color de fondo del cuerpo de la página */
+}
+
+/* Estilo de la lista de escuelas */
+.lista-escuelas {
+    list-style-type: none;
+    padding: 0;
+}
+
+.escuela-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between; /* Alinea los elementos horizontalmente */
+    align-items: center; /* Alinea verticalmente el botón con el texto */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.escuela-item:hover {
+    background-color: #e0f7fa;
+}
+
+/* Contenedor para la información de la escuela */
+.escuela-info {
+    display: flex;
+    flex-direction: column; /* Coloca los elementos de información en columna */
+}
+
+.nombre-escuela {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px; /* Espacio entre cada línea */
+}
+
+.eliminar-form {
+    margin-left: 20px; /* Añade un margen entre la información y el botón eliminar */
+}
+
+.eliminar-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.eliminar-btn:hover {
+    background-color: #c0392b;
+}
+
+.lista-escuelas-title {
+    text-align: center;
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+/* Estilo del título */
+.lista-escuelas-title{
+    text-align: center;
+    text-decoration: underline;
+    color: #2c3e50; /* Color más suave */
+    font-size: 2.5rem;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+    transition: color 0.3s, text-shadow 0.3s; /* Transición suave */
+}
+
+.lista-escuelas-title:hover {
+    color: #1abc9c; /* Cambia el color del texto al pasar el mouse */
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* Intensifica la sombra */
+}

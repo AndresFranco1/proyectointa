@@ -1,42 +1,7 @@
 {% extends 'registration/navigatebar.html' %}
 {% block content %}
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'posta.css' %}">
-</head>
 
-<body>
-    {% if user.is_superuser %}
-        <li class="nav-item">
-            <a href="/info_usuarios" class="nav-link active">Información de Usuarios</a>
-        <li class="nav-item">
-            <a href="/estadisticas_resultados" class="nav-link active">Estadisticas Resultados</a>
-        </li>
-        <li class="nav-item">
-            <a href="/ingresar_pregunta" class="nav-link active">Ingesar pregunta</a>
-        </li>
-        <li class="nav-item">
-            <a href="/lista_preguntas" class="nav-link active">Lista Pregunta</a>
-        </li>
-        <li class="nav-item">
-            <a href="/ingresar_escuela" class="nav-link active">Ingesar Escuela</a>
-        </li>
-        <li class="nav-item">
-            <a href="/lista_escuelas" class="nav-link active">Lista Escuela</a>
-        </li>
-
-        <a href="{% url 'logout' %}">Cerrar sesión</a>
-    {% else %}
-        <h1 class="title">Configuración</h1>
-        <a href="{% url 'logout' %}">Cerrar sesión</a>
-    {% endif %}
-</body> -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,11 +23,11 @@
             <li><a href="/lista_escuelas" class="nav-link active">Lista Escuelas</a></li>
         </ul>
         <li>
-            <a href="{% url 'logout' %}" class="nav-link active cerrar-sesion">Cerrar sesión</a>
+            <a href="{% url 'logout' %}" class="cerrar-sesion">Cerrar sesión</a>
         </li>
     {% else %}
         <li>
-            <a href="{% url 'logout' %}" class="nav-link active cerrar-sesion">Cerrar sesión</a>
+            <a href="{% url 'logout' %}" class=" cerrar-sesion">Cerrar sesión</a>
         </li>
     {% endif %}
 </body>

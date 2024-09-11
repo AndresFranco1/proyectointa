@@ -162,22 +162,26 @@ def info_usuarios(request):
     escuelas = Escuela.objects.all()
     
     
-    school_filtrada= request.GET.get('school',None)
+    escuela_filtrada= request.GET.get('escuela',None)
     first_name_filtrado= request.GET.get('first_name',None)
     last_name_filtrado= request.GET.get('last_name',None)
     username_filtrado = request.GET.get("username",None)
-    if school_filtrada:
-        usuarios = usuarios.filter(school__nombre_escuela=school_filtrada)
+    if escuela_filtrada:
+        usuarios = usuarios.filter(school__nombre_escuela=escuela_filtrada)
     if first_name_filtrado:
         usuarios = usuarios.filter(first_name__icontains=first_name_filtrado)
     if last_name_filtrado:
         usuarios = usuarios.filter(last_name__icontains=last_name_filtrado)
     if username_filtrado:
         usuarios = usuarios.filter(username__icontains=username_filtrado)
-        
+    
+     # Contar el número total de usuarios
+    total_usuarios = Usuario.objects.count()
+    
     context = {
         "usuarios" : usuarios,
-        "escuelas" : escuelas
+        "escuelas" : escuelas,
+        "total_usuarios": total_usuarios
     }
     return render(request, 'info_usuarios.html', context)
 

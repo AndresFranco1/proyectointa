@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     #Registro
-    path('', views.signup),
+    path('', views.login_view),
     path('signup/', views.signup, name="signup"),
     path('login/', views.login_view, name='login'),
     path('logout/', views.exit, name='logout'),

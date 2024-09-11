@@ -8,14 +8,14 @@
 
 </head>
 <body>
-    <h1>Resultados</h1>
+    <h1 class="title">Resultados</h1>
     <div class="preguntas-container">
         {% for resultado in resultados %}
             <div class="pregunta-block">
                 <h2>{{ resultado.pregunta.texto_pregunta }}</h2>
                 <p>Total de respuestas: {{ resultado.total_respuestas }}</p>
                 <div class="grafico-y-referencias">
-                    <ul >
+                    <ul class="porcentajes" >
                         <li>1 estrella: {{ resultado.conteos.1 |default_if_none:"0"|safe }} ({{ resultado.porcentajes.1 }}%)</li>
                         <li>2 estrellas: {{ resultado.conteos.2 |default_if_none:"0"|safe }} ({{ resultado.porcentajes.2 }}%)</li>
                         <li>3 estrellas: {{ resultado.conteos.3 |default_if_none:"0"|safe }} ({{ resultado.porcentajes.3 }}%)</li>

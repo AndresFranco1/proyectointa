@@ -4,7 +4,7 @@
 <form action="/ingresar_pregunta/" method="POST">
     <link rel="stylesheet" href="{% static 'ingresar_escuela.css' %}">
     {% csrf_token %}
-    
+    <h1 class="title">Ingresar pregunta nueva</h1>
     <div class="form-group">
         <label for="texto_pregunta">Texto pregunta:</label>
         {{ form.texto_pregunta }}

@@ -10,7 +10,22 @@ body {
     align-items: center;
     min-height: 100vh;
   }
-  
+  /* Estilo del título */
+.title {
+  text-align: center;
+  text-decoration: underline;
+  color: #2c3e50; /* Color más suave */
+  font-size: 2.5rem;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+  transition: color 0.3s, text-shadow 0.3s; /* Transición suave */
+}
+
+.title:hover {
+  color: #1abc9c; /* Cambia el color del texto al pasar el mouse */
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* Intensifica la sombra */
+}
   /* Contenedor del formulario */
   .form-wrapper {
     max-width: 600px;

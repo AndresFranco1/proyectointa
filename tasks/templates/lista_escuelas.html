@@ -1,19 +1,23 @@
 {% extends 'registration/navigatebar.html' %}
 {% block content %}
-    <title>Lista de Escuelas</title>
-    </head>
-    <body>
-        <h1>Lista de Escuelas</h1>
-        <ul>
-            {% for escuela in escuelas %}
-                <li>{{ escuela.nombre_escuela }}
-                    <form action="{% url 'eliminar_escuela' pk=escuela.pk %}" method="post" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar esta escuela? Junto con ella se eliminaran todos los usuarios asociados');">Eliminar</button>
-                    </form>
-                   
-                </li>
-            {% endfor %}
-        </ul>
-    </body>
+{% load static %}
+    <link rel="stylesheet" href="{% static 'lista_escuelas.css' %}">
+    <h1 class="lista-escuelas-title">Lista de Escuelas</h1>
+    <ul class="lista-escuelas">
+        {% for escuela in escuelas %}
+            <li class="escuela-item">
+                <div class="escuela-info">
+                    <span class="nombre-escuela">Nombre: {{ escuela.nombre_escuela }}</span>
+                    <span class="nombre-escuela">Número: {{ escuela.numero_escuela }}</span>
+                    <span class="nombre-escuela">Dirección: {{ escuela.direccion_escuela }}</span>
+                    <span class="nombre-escuela">Localidad: {{ escuela.localidad_escuela }}</span>
+                </div>
+                <form class="eliminar-form" action="{% url 'eliminar_escuela' pk=escuela.pk %}" method="post">
+                    {% csrf_token %}
+                    <button class="eliminar-btn" type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar esta escuela? Junto con ella se eliminarán todos los usuarios asociados');">Eliminar</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
 {% endblock %}

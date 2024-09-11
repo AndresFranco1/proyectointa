@@ -2,62 +2,68 @@
 body {
   background-color: #d6eee3; /* Color de fondo suave */
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
 }
 
-/* Estilo del título principal */
-h1 {
-  font-size: 24px;
-  color: #2c3e50;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-/* Contenedor de las preguntas */
-.preguntas-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px; /* Espacio entre bloques */
-}
-
-/* Bloque de cada pregunta */
-.pregunta-block {
-  flex: 1 1 calc(50% - 20px); /* Dos columnas, menos el espacio del gap */
-  box-sizing: border-box; /* Incluye el padding y borde en el tamaño total del elemento */
+/* Contenedor de los enlaces */
+ul.nav-item {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px auto; /* Auto en los márgenes izquierdo y derecho para centrar */
+  max-width: 400px;  /* Controla el ancho máximo del recuadro */
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-  margin-bottom: 20px; /* Espacio debajo de cada bloque */
 }
 
-/* Estilo del título de cada pregunta */
-h2 {
-  font-size: 20px;
-  color: #16a085;
+/* Estilo de los enlaces en la lista */
+ul.nav-item li {
   margin-bottom: 10px;
 }
 
-/* Estilo del total de respuestas */
-p {
-  font-size: 16px;
-  color: #7f8c8d;
-  margin-bottom: 15px;
+ul.nav-item li a {
+  color: #2c3e50; /* Color de los enlaces */
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 15px;
+  display: block;
+  background-color: #ecf0f1; /* Fondo claro por defecto */
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
+  text-align: center; /* Texto centrado dentro del botón */
 }
 
-/* Contenedor de gráfico y referencias */
-.grafico-y-referencias {
-  display: flex;
-  align-items: flex-start; /* Alinea el gráfico y la lista de porcentajes al inicio */
-  gap: 20px; /* Espacio entre gráfico y lista de porcentajes */
+ul.nav-item li a:hover {
+  background-color: #1abc9c; /* Fondo verde al pasar el mouse */
+  color: #fff; /* Texto blanco en hover */
+  transform: scale(1.05); /* Efecto de agrandamiento */
 }
 
-/* Canvas del gráfico de torta */
-.grafico-torta {
-  width: 50%; /* Ajusta el ancho del gráfico */
-  max-width: 300px; /* Tamaño máximo del gráfico */
-  height: auto; /* Mantiene la proporción del gráfico */
+/* Estilo del título */
+h1.title {
+  font-size: 24px;
+  color: #2c3e50;
+  text-align: center;
+  margin-top: 60px; /* Espacio entre la navbar y el título */
+  margin-bottom: 20px;
 }
 
 
+a.cerrar-sesion {
+  color: #e74c3c; /* Rojo para destacar */
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #ecf0f1; /* Fondo gris claro para mantener consistencia */
+  text-align: center;
+  display: block; /* Para que el enlace ocupe toda la línea */
+  width: 200px; /* Puedes ajustar el ancho del botón según necesites */
+  padding: 10px 15px;
+  margin: 20px auto; /* Centra el botón horizontalmente */
+  border-radius: 5px;
+}
+
+/* Efecto hover del botón de cerrar sesión */
+a.cerrar-sesion:hover {
+  color: #fff;
+  background-color: #c0392b; /* Rojo más oscuro en hover */
+}

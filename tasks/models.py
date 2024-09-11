@@ -34,7 +34,7 @@ class Escuela(models.Model):
         self.localidad_escuela = self.localidad_escuela.title()
         
     def __str__(self):
-        return (self.nombre_escuela, self.numero_escuela,self.direccion_escuela,self.numero_escuela,self.localidad_escuela)
+        return (self.nombre_escuela, self.numero_escuela,self.direccion_escuela,self.localidad_escuela)
      
 class UsuarioManager(BaseUserManager):
     def create_user(self,username,first_name,last_name, password=None,school= None, **extra_fields):

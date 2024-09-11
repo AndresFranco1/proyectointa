@@ -9,7 +9,9 @@
         <link rel="stylesheet" href="{% static 'info_usuarios.css' %}">
     </head>
     <body>
-
+        <div class="total-usuarios">
+            Total de usuarios registrados: {{ total_usuarios }}
+        </div>
         <form method="GET" action="{% url 'info_usuarios' %}">
             <label for="escuela">Escuela:</label>
             <select name="escuela" id="escuela">

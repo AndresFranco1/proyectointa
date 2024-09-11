@@ -8,48 +8,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <title>Sign Up</title>
+    <title>Estación 3: El Suelo Productivo</title>
     {% load static %}
     <link rel="stylesheet" href="{% static '/posta.css' %}">
 </head>
 <body>
-    <h1 class="title">Tercera Estación: EL SUELO PRODUCTIVO (Posta 3)</h1>
-    <p class="container">
-    En esta parada, se ponen en funcionamiento distintas máquinas agrícolas que trabajan el 
-    suelo de diferentes maneras (arado, cincel, sembradora), mostrando a los niños, como la 
-    tecnología ha ido mejorando con el tiempo y se ha remplazado el laboreo tradicional por 
-    la siembra directa, que permite dejar el rastrojo en superficie y no perturbar el suelo. 
-    Se discute sobre las diversas formas de trabajar el suelo y el impacto de estas 
-    actividades en él. <br>
-    Además, se invita a los niños a explorar y descubrir la fauna del suelo, así como a 
-    encontrar las semillas recién implantadas por la sembradora. <br>
-    Siguiendo el recorrido, se les muestra a los estudiantes las principales producciones 
-    agropecuarias del centro santafesino (colza, alfalfa trigo, cebada, centeno, cultivos de 
-    cobertura). De manera lúdica se les explica cuáles son los diferentes cultivos y se les 
-    enseña a distinguir entre cultivos de verano e invierno, así como el uso final de cada 
-    uno, tratando de lograr que entiendan la conexión desde el campo a su casa. Se destaca 
-    como muchos de estos cultivos protegen el suelo, evitando la erosión y cómo un 
-    beneficio adicional, dejan los rastrojos en superficie, luego la cosecha, devolviendo los 
-    nutrientes al suelo, mejorando las propiedades físicas, químicas y biológicas del mismo.
-    Por otro lado, se les enseña sobre la producción de miel, un profesional con traje apícola 
-    les muestra las diferentes partes del apiario. <br>
-    Se les explica cómo influye el suelo en la producción de miel, ya que las abejas 
-    necesitan de una diversidad de flores y plantas para recolectar el néctar y el polen, 
-    elementos fundamentales para la producción de la miel. También se les explica la 
-    importancia de las abejas en la polinización de las plantas y cómo su trabajo contribuye 
-    a la fertilidad del suelo y al equilibrio del ecosistema. <br>
-    Finalmente, los niños llegan a un corral donde hay una vaca lechera. Aquí, los 
-    profesionales del INTA explican cómo el suelo permite el crecimiento de la pastura, 
-    como la alfalfa, que alimentan a la vaca y le permiten producir leche. Se les muestra 
-    cómo se alimenta y cuida a la vaca para garantizar su bienestar y la calidad de la leche 
-    que produce. <br>
-    También se les enseña cómo los residuos de la vaca, como las heces y la orina, retornan 
-    al suelo, enriqueciéndolo y nutriéndolo y cómo este proceso contribuye a mantener la 
-    salud y la fertilidad del suelo para futuros cultivos.
-    </p>
-    <a href="{% url 'home' %}">
-        <i class="bi bi-arrow-left-circle-fill arrow-icon"></i>
-    </a> 
+    <h2 class="station-title">Tercera Estación: El Suelo Productivo</h2>
+    <div class="content">
+        <p>
+            En esta parada, se ponen en funcionamiento distintas máquinas agrícolas que trabajan el 
+            suelo de diferentes maneras (arado, cincel, sembradora), mostrando a los niños cómo la 
+            tecnología ha ido mejorando con el tiempo y se ha reemplazado el laboreo tradicional por 
+            la siembra directa, que permite dejar el rastrojo en la superficie y no perturbar el suelo. 
+            Se discute sobre las diversas formas de trabajar el suelo y el impacto de estas 
+            actividades en él.
+        </p>
+        <!-- Carrusel: Máquinas Agrícolas -->
+        <div class="carousel">
+            <input type="radio" id="slide1" name="carousel1" checked>
+            <input type="radio" id="slide2" name="carousel1">
+            
+            <div class="slides">
+                <div class="slide">
+                    <img src="{% static 'images/maquinas.JPG' %}" alt="Máquinas agrícolas trabajando el suelo">
+                </div>
+                <div class="slide">
+                    <img src="{% static 'images/maquinas1.JPG' %}" alt="Máquinas agrícolas trabajando el suelo">
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <label for="slide1" class="control-dot"></label>
+                <label for="slide2" class="control-dot"></label>
+            </div>
+        </div>
+
+        <p>
+            Además, se invita a los niños a explorar y descubrir la fauna del suelo, así como a 
+            encontrar las semillas recién implantadas por la sembradora.
+        </p>
+        <!-- Carrusel: Fauna del Suelo -->
+        <div class="carousel">
+            <input type="radio" id="slide3" name="carousel2" checked>
+            <input type="radio" id="slide4" name="carousel2">
+            
+            <div class="slides">
+                <div class="slide">
+                    <img src="{% static 'images/semillas.JPG' %}" alt="Fauna del suelo">
+                </div>
+                <div class="slide">
+                    <img src="{% static 'images/semillas1.JPG' %}" alt="Fauna del suelo">
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <label for="slide3" class="control-dot"></label>
+                <label for="slide4" class="control-dot"></label>
+            </div>
+        </div>
+
+        <p>
+            Siguiendo el recorrido, se les muestra a los estudiantes las principales producciones 
+            agropecuarias del centro santafesino (colza, alfalfa, trigo, cebada, centeno). De manera lúdica se les explica cuáles son los diferentes cultivos y se les 
+            enseña a distinguir entre cultivos de verano e invierno, así como el uso final de cada 
+            uno, tratando de lograr que entiendan la conexión desde el campo a su casa. Se destaca 
+            cómo muchos de estos cultivos protegen el suelo, evitando la erosión, y cómo, como 
+            beneficio adicional, dejan los rastrojos en la superficie luego de la cosecha, devolviendo 
+            nutrientes al suelo y mejorando sus propiedades físicas, químicas y biológicas.
+        </p>
+
+        <p>
+            Por otro lado, se les enseña sobre la producción de miel. Un profesional con traje apícola 
+            les muestra las diferentes partes del apiario.
+        </p>
+        <!-- Carrusel: Producción de Miel -->
+        <div class="carousel">
+            <input type="radio" id="slide5" name="carousel3" checked>
+            <input type="radio" id="slide6" name="carousel3">
+            <input type="radio" id="slide7" name="carousel3">
+            
+            <div class="slides">
+                <div class="slide">
+                    <img src="https://example.com/apicultura.jpg" alt="Producción de miel y abejas">
+                </div>
+                <div class="slide">
+                    <img src="https://example.com/abejas-polinizacion.jpg" alt="Abejas polinizando flores">
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <label for="slide5" class="control-dot"></label>
+                <label for="slide6" class="control-dot"></label>
+                <label for="slide7" class="control-dot"></label>
+            </div>
+        </div>
+
+        <a href="{% url 'home' %}" class="back-link">
+            <i class="bi bi-arrow-left-circle-fill arrow-icon"></i> Volver al inicio
+        </a>
+    </div>
 </body>
+</html>
 
 {% endblock %}

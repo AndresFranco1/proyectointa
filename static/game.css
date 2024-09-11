@@ -5,27 +5,24 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;    /* Centra verticalmente */
+    min-height: 100vh;      /* Asegura que el body ocupe toda la altura de la vista */
 }
 
-.container {
-    width: 603.2px;
-    height: 855.81px;
-    background-color: white;  /* Cambia el color si es necesario */
-    padding: 0px;
-    box-sizing: border-box;
-    overflow-y: auto; /* Permite desplazamiento si el contenido es muy largo */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centra horizontalmente todos los elementos hijos */
+.content {
+    width: 80%;
+    max-width: 900px;
+    background-color: white; /* Color de fondo del contenido */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    text-align: center; /* Alineación de texto al centro */
 }
 
 .title {
-    text-align: center;
     margin: 20px 0;
-    color: black;
+    color: #2c3e50; /* Color del título */
     font-size: 2em;
 }
 
@@ -33,23 +30,23 @@ body {
     display: flex;
     justify-content: center; /* Centrar horizontalmente */
     align-items: center;    /* Centrar verticalmente */
-    height: 100%;           /* Ajusta según el tamaño del contenedor */
-    width: 100%;            /* Ajusta según el tamaño del contenedor */
+    height: auto;           /* Ajusta la altura automáticamente */
+    width: 100%;            /* Ajusta al ancho del contenedor */
 }
 
 .imginta img {
-    width: 300px;
-    height: 300px;
-    object-fit: contain;    /* Asegura que la imagen se ajuste al contenedor sin deformarse */
-    display: block; /* Elimina el espacio debajo de la imagen si es un inline-block */
+    width: 100%;
+    max-width: 300px; /* Tamaño máximo de la imagen */
+    height: auto;     /* Mantiene la proporción */
+    object-fit: cover; /* Asegura que la imagen cubra el contenedor */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
     margin: 0 auto; /* Centra la imagen */
 }
 
-
 @media (max-width: 600px) {
-    .container {
-        width: 100%; 
-        height: auto; 
+    .content {
+        width: 100%;
     }
     
     .title {

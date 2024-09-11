@@ -9,6 +9,15 @@ body {
 .navbar {
     background: black;
     padding: 8px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.container {
+    padding-top: 50px;
 }
 
 .navbar ul {
@@ -30,12 +39,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%; /* Ajusta este valor según lo que quieras */
-    height: auto; /* Ajusta este valor según lo que quieras */
 }
 
 .navbar ul li a i {
-    font-size: 2rem; /* Reducir tamaño del ícono */
+    font-size: 2rem;
 }
 
 .navbar ul li a:hover {
@@ -44,13 +51,22 @@ body {
 
 @media (max-width: 768px) {
     .navbar ul {
-        flex-direction: column;
-        align-items: center;
+        justify-content: space-between; /* Mantén los elementos distribuidos uniformemente */
+        flex-wrap: nowrap; /* Evita que se apilen uno encima del otro */
+        overflow-x: auto; /* Permite el desplazamiento horizontal si es necesario */
     }
 
     .navbar ul li {
-        margin-bottom: 5px;
+        flex: 1 1 auto; /* Los elementos ocupan el mismo espacio disponible */
+        margin: 0; /* Elimina el margen inferior */
+    }
+
+    .navbar ul li a {
+        font-size: 0.9rem; /* Reduce el tamaño del texto en pantallas pequeñas */
+        padding: 6px 10px; /* Ajusta el padding para ocupar menos espacio */
+    }
+
+    .navbar ul li a i {
+        font-size: 1.5rem; /* Reduce el tamaño de los íconos */
     }
 }
-
-

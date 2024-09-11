@@ -8,21 +8,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <title>Sign Up</title>
+    <title>Estación 4: Ambiente de Juegos</title>
     {% load static %}
     <link rel="stylesheet" href="{% static '/posta.css' %}">
 </head>
 <body>
-    <h1 class="title">Cuarta Estación: AMBIENTE DE JUEGOS (Posta 4)</h1>
-    <p class="container">
-    La visita culmina, con un merecido descanso. Este momento se convierte en una 
-    oportunidad perfecta para reforzar los conocimientos adquiridos durante la jornada. <br>
-    Para finalizar, tanto docentes como alumnos se les entrega una leche chocolatada 
-    acompañada de un alfajor.
-    </p>
-    <a href="{% url 'home' %}">
-        <i class="bi bi-arrow-left-circle-fill arrow-icon"></i>
-    </a> 
+    <h2 class="station-title">Estación 4: Ambiente de Juegos</h2>
+    <div class="content">
+        <p>
+            En esta última estación, los niños tienen un merecido descanso. Pueden disfrutar de algunos juegos y 
+            además, reciben una leche chocolatada y un alfajor.
+        </p>
+        <!-- Carrusel: Juegos -->
+        <div class="carousel">
+            <input type="radio" id="slide1" name="carousel1" checked>
+            
+            <div class="slides">
+                <div class="slide">
+                    <img src="https://example.com/juegos.jpg" alt="Juegos en la estación">
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <label for="slide1" class="control-dot"></label>
+            </div>
+        </div>
+
+        <p>
+            Durante este tiempo, se aprovecha para repasar lo aprendido durante el día, recordando la importancia de 
+            cuidar el suelo y el medio ambiente. Los niños se van con la idea de que es posible producir alimentos de 
+            forma responsable, sin dañar la naturaleza.
+        </p>
+        <!-- Carrusel: Leche Chocolatada y Alfajor -->
+        <div class="carousel">
+            <input type="radio" id="slide2" name="carousel2" checked>
+            
+            <div class="slides">
+                <div class="slide">
+                    <img src="{% static 'images/chocolatada.jpg' %}" alt="Leche chocolatada y alfajor">
+                </div>
+            </div>
+            
+            <div class="carousel-controls">
+                <label for="slide2" class="control-dot"></label>
+            </div>
+        </div>
+
+        <h3 class="conditions-title">Condiciones para poder jugar y divertirse al máximo:</h3>
+        <ul class="conditions-list">
+            <li><strong>Conciencia ambiental:</strong> Recuerda siempre cuidar el suelo y el medio ambiente, ¡así podemos seguir disfrutando de la naturaleza!</li>
+            <li><strong>Aprendizaje divertido:</strong> Mientras jugamos, aprenderemos sobre el suelo y cómo es súper importante para las plantas y los animales. ¡Es divertido aprender cosas nuevas!</li>
+            <li><strong>Cuidar el medio ambiente desde ahora:</strong> Al igual que cuando jugamos en equipo, todos tenemos que poner de nuestra parte para cuidar el suelo y la naturaleza, tanto aquí como en casa.</li>
+            <li><strong>Ser un multiplicador:</strong> Todo lo que aprendas hoy, cuéntaselo a tu familia y amigos. ¡Así todos podemos ser superhéroes que cuidan el medio ambiente!</li>
+            <li><strong>Convertirse en un ciudadano responsable:</strong> Recuerda que lo que aprendas hoy te ayudará a ser una persona que cuida el mundo en el futuro. ¡Eso es algo muy importante!</li>
+            <li><strong>Pensar en el futuro:</strong> Para que todos podamos seguir jugando y disfrutando de la naturaleza, necesitamos alimentos y tecnologías que no dañen el suelo. ¡Tú puedes ser parte de este futuro!</li>
+        </ul>
+
+        <a href="{% url 'home' %}" class="back-link">
+            <i class="bi bi-arrow-left-circle-fill arrow-icon"></i> Volver al inicio
+        </a>
+    </div>
 </body>
+
 
 {% endblock %}

@@ -88,3 +88,10 @@ form {
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
+.total-usuarios {
+    text-align: center; /* Centra el texto */
+    color: #e74c3c; /* Color rojo para el texto */
+    font-size: 1.5em; /* Tamaño de fuente más grande para destacarlo */
+    margin: 20px 0; /* Espacio arriba y abajo del texto */
+    font-weight: bold; /* Texto en negrita para más énfasis */
+}

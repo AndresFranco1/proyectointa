@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'puntuar_preguntas.css' %}">
 </head>
 <body>
-    <h1>Sistema de Puntuación</h1>
+    <h1>Contanos tu experiencia</h1>
     <form method="POST" action="/puntuar_pregunta/">
         {% csrf_token %}
         {% for pregunta in preguntas %}

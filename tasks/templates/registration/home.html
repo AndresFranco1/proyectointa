@@ -8,35 +8,105 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home</title>
         {% load static %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'home.css' %}">
     </head>
     <body>
-        <h1>INTA Jornada 25 años</h1>
-        <!-- <video width="600" height="480" controls>
-            <source src="">
-        </video> -->
-        <div class="video-container">
-            <video class="video" controls>
-                <source src="{% static 'videos/Video INTA.mp4' %}" type="video/mp4">
-            </video>
-        </div>
-        <div class="image-container">
-            <a href="{% url 'posta1' %}">
-                <img src="{% static 'images/img1.png' %}" alt="Posta 1">
-            </a>
-            <a href="{% url 'posta2' %}">
-                <img src="{% static 'images/img2.png' %}" alt="Posta 2">
-            </a>
-            <a href="{% url 'posta3' %}">
-                <img src="{% static 'images/img3.png' %}" alt="Posta 3">
-            </a>
-            <a href="{% url 'posta4' %}">
-                <img src="{% static 'images/img4.png' %}" alt="Posta 4">
-            </a>
+        <div class="main-container">
+            <header class="main-header">
+                <h1 class="title">DESDE EL SUELO PENSAMOS EN EL MEDIO AMBIENTE</h1>
+                <h3>25º Jornadas Escolares</h3>
+            </header>
+            
+    
+            <section class="categories">
+                <h2>Instituto Nacional de Tecnología Agropecuaria Argentina</h2>
+                <div class="category-grid">
+                    <div>
+                        <a aria-current="page" href="https://geo.inta.gob.ar/es#3/-41.3/-64.58" target="_blank">
+                            <i class="category-item bi bi-geo-alt"></i> <!-- Ícono de Localización -->
+                            <span>INTA Geo</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a aria-current="page" href="https://www.argentina.gob.ar/inta/informacion-agroclimatica" target="_blank">
+                            <i class="category-item bi bi-cloud-sun"></i> <!-- Ícono de Agroclimática -->
+                            <span>Información Agroclimática</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a aria-current="page" href="https://www.argentina.gob.ar/inta/programas-nacionales" target="_blank">
+                            <i class="category-item bi bi-newspaper"></i> <!-- Ícono de Newspaper -->
+                            <span>Programas Nacionales</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a aria-current="page" href="https://formacion.inta.gob.ar/" target="_blank">
+                            <i class="category-item bi bi-pencil"></i> <!-- Ícono de Pencil -->
+                            <span>Microcursos</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a aria-current="page" href="https://www.argentina.gob.ar/inta/sedes" target="_blank">
+                            <i class="category-item bi bi-globe-americas"></i> <!-- Ícono de Pencil -->
+                            <span>Donde estamos</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+    
+            <section class="video-container">
+                <video class="video" controls>
+                    <source src="{% static 'videos/Video INTA.mp4' %}" type="video/mp4">
+                </video>
+            </section>
+    
+            <section class="image-container">
+                <a href="{% url 'posta1' %}">
+                    <img src="{% static 'images/gota_sola.webp' %}" alt="Posta 1">
+                </a>
+                <a href="{% url 'posta2' %}">
+                    <img src="{% static 'images/gota_suelo.webp' %}" alt="Posta 2">
+                </a>
+                <a href="{% url 'posta3' %}">
+                    <img src="{% static 'images/gota_suelo_productivo.webp' %}" alt="Posta 3">
+                </a>
+                <a href="{% url 'posta4' %}">
+                    <img src="{% static 'images/gota_juegos.webp' %}" alt="Posta 4">
+                </a>
+            </section>
+    
+            <section class="agenda">
+                <div class="agenda-grid">
+                    <div class="agenda-item">
+                        <a href="https://www.argentina.gob.ar/inta">
+                            <img src="{% static 'images/inta_logo.png' %}" alt="Ícono inta" class="empresa-icon">
+                        </a>
+                    </div>
+                    <div class="agenda-item">
+                        <a aria-current="page" href="https://www.instagram.com/inta.argentina" target="_blank">
+                            <i class="category-item bi bi-instagram"></i> <!-- Ícono de instagram -->
+                        </a>
+                    </div>
+                    <div class="agenda-item">
+                        <a aria-current="page" href="https://www.youtube.com/user/webinta" target="_blank">
+                            <i class="category-item bi bi-youtube"></i> <!-- Ícono de youtube -->
+                        </a>
+                    </div>
+                    <div class="agenda-item">
+                        <a href="https://www.unraf.edu.ar/" target="_blank">
+                            <img src="{% static 'images/unraf_logo.png' %}" alt="Ícono unraf" class="empresa-icon">
+                        </a>
+                    </div>
+                </div>
+            </section>
         </div>
     </body>
+    
     </html>
 {% else %}
     <p>Debes <a href="{% url 'login' %}">iniciar sesión</a> para ver esta página.</p>
 {% endif %}
+
+
 {% endblock %}
