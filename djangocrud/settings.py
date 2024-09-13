@@ -132,8 +132,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 LOGIN_URL = '/login/'
+# settings.py
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 AUTH_USER_MODEL = 'tasks.Usuario'
 # Configura STATIC_ROOT para la carpeta donde Django almacenará los archivos estáticos tras ejecutar collectstatic
