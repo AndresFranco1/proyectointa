@@ -14,6 +14,26 @@ body {
   overflow-x: hidden; /* Oculta el scroll horizontal */
   padding: 20px;
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: #ffeb3b #f1f1f1;
+}
+
+.scroll-container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: #ffeb3b; /* Color brillante para la barra de desplazamiento */
+  border-radius: 10px;
+  border: 3px solid #f1f1f1;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+  background-color: #fbc02d; /* Color de la barra de desplazamiento al pasar el mouse */
 }
 
 /* Estilos para el contenedor de inicio de sesión */
@@ -37,7 +57,6 @@ body {
   transition: color 0.3s, transform 0.3s, text-shadow 0.3s; /* Transiciones para efectos interactivos */
 }
 
-/* Efecto interactivo al pasar el mouse sobre el título */
 .login-container h2:hover {
   color: black; /* Color más intenso al pasar el mouse */
   transform: scale(1.1); /* Escala el título ligeramente */
@@ -50,7 +69,6 @@ body {
   margin-top: 20px; /* Ajusta este valor según la separación que desees */
 }
 
-/* Estilo para el logo */
 .logo-container img {
   width: 60px; /* Ajusta el tamaño del logo según sea necesario */
   height: auto;
@@ -73,7 +91,6 @@ body {
   transition: color 0.3s, transform 0.3s; /* Transiciones para interacciones */
 }
 
-/* Efecto al pasar el mouse sobre las etiquetas */
 .form-group label:hover {
   color: black;
   transform: scale(1.03); /* Escala el label ligeramente */
@@ -102,7 +119,6 @@ button {
   transition: background-color 0.3s, transform 0.3s; /* Transiciones para interacciones */
 }
 
-/* Efecto al pasar el mouse sobre el botón */
 button:hover {
   background-color: #388e3c; /* Color del botón al pasar el mouse */
   transform: scale(1.05); /* Escala el botón ligeramente */
@@ -116,7 +132,6 @@ button:hover {
   transition: color 0.3s; /* Transición para el color de los enlaces */
 }
 
-/* Efecto al pasar el mouse sobre los enlaces */
 .login-container a:hover {
   color: #388e3c; /* Color de los enlaces al pasar el mouse */
 }
@@ -126,60 +141,36 @@ button:hover {
   color: red; /* Color rojo para mensajes de error */
 }
 
-/* Personalización de la barra de desplazamiento */
-.scroll-container::-webkit-scrollbar {
-  width: 12px;
-}
-
-.scroll-container::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.scroll-container::-webkit-scrollbar-thumb {
-  background-color: #ffeb3b; /* Color brillante para la barra de desplazamiento */
-  border-radius: 10px;
-  border: 3px solid #f1f1f1;
-}
-
-.scroll-container::-webkit-scrollbar-thumb:hover {
-  background-color: #fbc02d; /* Color de la barra de desplazamiento al pasar el mouse */
-}
-
-.scroll-container {
-  scrollbar-width: thin;
-  scrollbar-color: #ffeb3b #f1f1f1;
-}
-
 /* Media queries para hacer la página responsive */
 @media (max-width: 768px) {
   .login-container {
-    padding: 15px;
-    text-align: center;
+      padding: 15px;
+      text-align: center;
   }
 
   .form-group {
-    margin-bottom: 15px;
+      margin-bottom: 15px;
   }
 
   button {
-    font-size: 14px; /* Ajusta el tamaño del texto del botón en pantallas más pequeñas */
-    padding: 10px;
+      font-size: 14px; /* Ajusta el tamaño del texto del botón en pantallas más pequeñas */
+      padding: 10px;
   }
 }
 
 @media (max-width: 480px) {
   .login-container {
-    width: 90%;
-    padding: 20px; /* Ajusta el padding para pantallas más pequeñas */
+      width: 90%;
+      padding: 20px; /* Ajusta el padding para pantallas más pequeñas */
   }
 
   .form-group input {
-    padding: 8px;
-    font-size: 12px; /* Tamaño del texto ajustado para pantallas más pequeñas */
+      padding: 8px;
+      font-size: 12px; /* Tamaño del texto ajustado para pantallas más pequeñas */
   }
 
   button {
-    font-size: 14px; /* Tamaño del texto del botón en pantallas más pequeñas */
-    padding: 10px;
+      font-size: 14px; /* Tamaño del texto del botón en pantallas más pequeñas */
+      padding: 10px;
   }
 }

@@ -10,7 +10,7 @@
 </head>
 <body>
     <h1>Contanos tu experiencia</h1>
-    <form method="POST" action="/puntuar_pregunta/">
+    <form method="POST" action="/puntuar_pregunta/" enctype="multipart/form-data">
         {% csrf_token %}
         {% for pregunta in preguntas %}
             <div class="question">
@@ -29,8 +29,31 @@
                 </div>
         {% endfor %}
 
-        <button type="submit">Enviar</button>
-    </form>
 
+        <h2 class="subtitulo">Mostranos tu experiencia</h2>
+        <div class="image-upload">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="file-upload">
+                    <input type="file" id="imagen" name="imagen" class="file-input">
+                    <button type="button" class="file-button" onclick="document.getElementById('imagen').click()">Seleccionar archivo</button>
+                    <div id="file-name" class="file-name">No se ha seleccionado ningún archivo</div>
+                </div>
+                <div class="file-upload">
+                    <label for="descripcion" class="file-label">Descripción (opcional):</label>
+                    {{ imagen_form.descripcion }}
+                </div>
+            </form>
+        </div>
+
+        <button type="submit" class="file-button">Enviar</button>
+    </form>
+    <script>
+        document.getElementById('imagen').addEventListener('change', function() {
+            var fileName = this.files.length > 0 ? this.files[0].name : 'No se ha seleccionado ningún archivo';
+            document.getElementById('file-name').textContent = fileName;
+        });
+    </script>
+    
 </body>
 {% endblock %}

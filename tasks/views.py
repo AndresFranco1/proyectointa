@@ -1,8 +1,7 @@
 
 from django.shortcuts import render,redirect, get_object_or_404
-from .models import Usuario,Escuela,Pregunta,Puntuación
-from .forms import UsuarioForm,IngresarForm, IngresarEscuelaForm, IngresarPreguntaForm, PuntarPreguntasForm
-from django.contrib.auth.forms import AuthenticationForm
+from .models import Usuario,Escuela,Pregunta,Puntuación, ImagenUsuario
+from .forms import UsuarioForm,IngresarForm, IngresarEscuelaForm, IngresarPreguntaForm, PuntarPreguntasForm, ImagenForm
 from django.contrib.auth import login,logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
@@ -59,9 +58,10 @@ def signup(request):
             )
             user.set_password(form.cleaned_data["password"])
             user.set_password(form.cleaned_data["password2"])
+            
             user.save()
 
-            return  redirect('login')
+            return  redirect('home')
         else:
             escuelas = Escuela.objects.all()
             context = {
@@ -252,6 +252,7 @@ def eliminar_pregunta(request,pk):
 def puntuar_pregunta(request):
     preguntas = Pregunta.objects.all()
     if request.method == 'POST':
+        #puntuaciones
         for pregunta in preguntas:
             estrellas = request.POST.get(f"estrellas_{pregunta.id}")
             if estrellas:
@@ -259,15 +260,37 @@ def puntuar_pregunta(request):
                     pregunta = pregunta,
                     puntuacion = estrellas
                 )
+        #imagenes
+            form = ImagenForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                
         return redirect("home")
     else:
         preguntas = Pregunta.objects.all()
-        form = PuntarPreguntasForm
+        form = PuntarPreguntasForm()
+        imagen_form = ImagenForm()
         context = {
             "preguntas" : preguntas,
-            "form" : form
+            "form" : form,
+            "imagen_form": imagen_form
         }
         return render(request, "puntuar_preguntas.html", context )
+#imagenes
+
+def ver_imagenes(request):
+    imagenes = ImagenUsuario.objects.all()
+    context = {
+               'imagenes': imagenes,
+               }
+    return render(request, 'ver_imagenes.html', context)
+
+def eliminar_imagen(request, imagen_id):
+    imagen = get_object_or_404(ImagenUsuario, id=imagen_id)
+    if request.method == 'POST':
+        imagen.delete()
+        return redirect('ver_imagenes')
+    return redirect('ver_imagenes')
 
 @login_required   
 def estadisticas_resultados(request):

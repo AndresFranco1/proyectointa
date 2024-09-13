@@ -1,0 +1,64 @@
+{% extends 'registration/navigatebar.html' %}
+
+{% block content %}
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Ver Imágenes</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="{% static 'ver_imagenes.css' %}">
+        <script>
+            function confirmarEliminacion(event) {
+                if (!confirm('¿Estás seguro de que quieres eliminar esta imagen?')) {
+                    event.preventDefault();
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Imágenes Subidas</h1>
+        <div class="image-gallery">
+            {% for imagen in imagenes %}
+                <div class="image-container">
+                    <img src="{{ imagen.imagen.url }}" alt="Imagen subida"data-description="{{ imagen.descripcion }}">
+                    <form method="POST" action="{% url 'eliminar_imagen' imagen.id %}" class="delete-form" onsubmit="confirmarEliminacion(event)">
+                        {% csrf_token %}
+                        <button type="submit" class="delete-button"><i class="fas fa-trash"></i></button>
+                    </form>
+                </div>
+            {% empty %}
+                <p>No hay imágenes subidas aún.</p>
+            {% endfor %}
+        </div>
+        <div id="modal" class="modal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img class="modal-content" id="modal-img">
+        </div>
+        <div id="modal" class="modal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img class="modal-content" id="modal-img">
+            <div class="modal-description" id="modal-description"></div>
+        </div>
+    
+        <script>
+            // Función para abrir la ventana modal
+            function openModal(src, description) {
+                document.getElementById('modal').style.display = 'block';
+                document.getElementById('modal-img').src = src;
+                document.getElementById('modal-description').textContent = description;
+            }
+    
+            // Función para cerrar la ventana modal
+            function closeModal() {
+                document.getElementById('modal').style.display = 'none';
+            }
+    
+            // Obtener todas las imágenes y añadirles un evento de clic
+            document.querySelectorAll('.image-container img').forEach(img => {
+                img.addEventListener('click', function() {
+                    openModal(this.src, this.dataset.description);
+                });
+            });
+        </script>
+    </body>
+{% endblock %}

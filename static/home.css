@@ -22,7 +22,7 @@ body {
 /* Title styles */
 /* Estilos para el Header */
 .main-header {
-    background: linear-gradient(rgba(26, 188, 156, 0.4), rgba(7, 219, 173, 0.4)), center/cover;
+    background: linear-gradient(rgba(26, 188, 156, 0.7), rgba(39, 174, 96, 0.7)), url('https://images.unsplash.com/photo-1503264116251-35a269479413') center/cover;
     padding: 30px 0;
     text-align: center;
     color: #fff;
@@ -30,6 +30,7 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     position: relative;
     overflow: hidden;
+    margin-top: 50px; /* Aquí añadimos el margen superior */
 }
 
 /* Animación de fondo */
@@ -63,6 +64,7 @@ body {
 
 /* Estilo de Título */
 .main-header .title {
+    
     font-size: 3.5em;
     font-weight: 700;
     letter-spacing: 2px;

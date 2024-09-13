@@ -7,8 +7,9 @@ body {
     padding: 20px;
     text-align: center;
 }
+
 /* Estilo del título */
-.title{
+.title {
     text-align: center;
     text-decoration: underline;
     color: #2c3e50; /* Color más suave */
@@ -23,9 +24,9 @@ body {
     color: #1abc9c; /* Cambia el color del texto al pasar el mouse */
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* Intensifica la sombra */
 }
+
 /* Encabezado principal */
 
-  
 /* Título de cada pregunta */
 h2 {
     color: #16a085;

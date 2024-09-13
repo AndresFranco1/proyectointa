@@ -1,7 +1,7 @@
 
 from django import forms
 from django.contrib.auth import authenticate
-from .models import Usuario,Escuela, Pregunta, Puntuación
+from .models import Usuario,Escuela, Pregunta, Puntuación, ImagenUsuario
 import re
 
 class UsuarioForm(forms.ModelForm):
@@ -61,3 +61,8 @@ class PuntarPreguntasForm(forms.ModelForm):
     class Meta:
         model = Puntuación
         fields = ["pregunta","puntuacion"]
+
+class ImagenForm(forms.ModelForm):
+    class Meta:
+        model = ImagenUsuario
+        fields = ['imagen', 'descripcion'] 

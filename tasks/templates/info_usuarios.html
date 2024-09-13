@@ -37,17 +37,17 @@
         </form>
 
         <div class="contenedor">
+            <div class="columna">ESCUELA</div>
             <div class="columna">NOMBRE</div>
             <div class="columna">APELLIDO</div>
-            <div class="columna">ESCUELA</div>
             <div class="columna">USERNAME</div>
         </div>
 
         {% for usuario in usuarios %}
         <div class="contenedor">
+            <div class="columna">{{ usuario.school.nombre_escuela }}</div>
             <div class="columna">{{ usuario.first_name }}</div>
             <div class="columna">{{ usuario.last_name }}</div>
-            <div class="columna">{{ usuario.school.nombre_escuela }}</div>
             <div class="columna">{{ usuario.username }}</div>
         </div>
         {% endfor %}

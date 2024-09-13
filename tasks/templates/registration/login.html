@@ -15,7 +15,7 @@
             <img class="logo-containersvg" src="{% static 'images/user-img.svg' %}" alt="User Logo">
         </div>
         <p>¿No estás registrado? <a href="{% url 'signup' %}">Registrarse</a></p>
-        <p>¿Olvidaste tu contraseña? <a href="{% url 'reset_password' %}">Recuperar</a></p>
+        <!-- <p>¿Olvidaste tu contraseña? <a href="{% url 'reset_password' %}">Recuperar</a></p> -->
         <form id="login-form" action="{% url 'login' %}" method="POST">
             {% csrf_token %}
             <div class="form-group">

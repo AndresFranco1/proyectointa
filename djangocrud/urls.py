@@ -2,6 +2,9 @@ from django.contrib import admin
 from django.urls import path
 from tasks import views
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     
@@ -25,21 +28,22 @@ urlpatterns = [
     path('posta3/', views.posta3, name="posta3"),
     path('posta4/', views.posta4, name="posta4"),
     
-    
-    
-    
     #SUPERUSER
     #usuarios
     path('info_usuarios/', views.info_usuarios, name="info_usuarios"),
     
-
      #preguntas
      path('ingresar_pregunta/', views.ingresar_pregunta, name='ingresar_pregunta'),
      path('puntuar_pregunta/', views.puntuar_pregunta, name='puntuar_preguntas'),
      path('lista_preguntas/', views.lista_preguntas, name='lista_preguntas'),
      path('lista_preguntas/modificar/<int:pk>/', views.modificar_pregunta, name='modificar_pregunta'),
      path('lista_preguntas/eliminar/<int:pk>/', views.eliminar_pregunta, name='eliminar_pregunta'),
-
+     
+     
+     #imagenes
+     path('ver_imagenes/', views.ver_imagenes, name='ver_imagenes'),
+     path('eliminar_imagen/<int:imagen_id>/', views.eliminar_imagen, name='eliminar_imagen'),
+     
      #escuelas
     path('ingresar_escuela/', views.ingresar_escuela, name = "ingresar_escuela"),
     path('lista_escuelas/', views.lista_escuelas, name='lista_escuelas'),
@@ -66,3 +70,6 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(template_name="registration/reset_password_complete.html"), 
          name="password_reset_complete"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

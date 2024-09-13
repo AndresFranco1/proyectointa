@@ -41,6 +41,7 @@
             <div class="form-group">
                 <label for="id_school">Escuela</label>
                 <select name="school" id="id_school" required>
+                    <option value="">-- Seleccionar Escuela --</option>
                     {% for school in escuelas %}
                         {% if school.nombre_escuela != "Inta" %}  <!-- Ocultar la escuela INTA -->
                             <option value="{{ school.id }}" {% if school.id == form.school.value %} selected{% endif %}>

@@ -95,3 +95,12 @@ class Puntuación(models.Model):
     
     def _str_(self):
         return f"{self.pregunta} -- {self.puntuacion} estrellas"
+    
+    
+class ImagenUsuario(models.Model):
+    imagen = models.ImageField(upload_to='imagenes/')
+    descripcion = models.CharField(max_length=255, blank=True)
+    fecha_subida = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Imagen subida el {self.fecha_subida}"
