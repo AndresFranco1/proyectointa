@@ -20,9 +20,7 @@
         <div class="image-gallery">
             {% for imagen in imagenes %}
                 <div class="image-container">
-                    <!-- <img src="{{ imagen.imagen.url }}" alt="Imagen subida" data-description="{{ imagen.descripcion }}"> -->
-                    <img src="https://proyectointa-11.onrender.com/media/imagenes/estudio_suelo.JPG" alt="Imagen subida">
-
+                    <img src="{{ imagen.imagen.url }}" alt="Imagen subida" data-description="{{ imagen.descripcion }}">
                     <form method="POST" action="{% url 'eliminar_imagen' imagen.id %}" class="delete-form" onsubmit="confirmarEliminacion(event)">
                         {% csrf_token %}
                         <button type="submit" class="delete-button"><i class="fas fa-trash"></i></button>
