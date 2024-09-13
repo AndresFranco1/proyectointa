@@ -32,8 +32,6 @@
 
         <h2 class="subtitulo">Mostranos tu experiencia</h2>
         <div class="image-upload">
-            <form method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
                 <div class="file-upload">
                     <input type="file" id="imagen" name="imagen" class="file-input">
                     <button type="button" class="file-button" onclick="document.getElementById('imagen').click()">Seleccionar archivo</button>
@@ -43,7 +41,7 @@
                     <label for="descripcion" class="file-label">Descripción (opcional):</label>
                     {{ imagen_form.descripcion }}
                 </div>
-            </form>
+
         </div>
 
         <button type="submit" class="file-button">Enviar</button>

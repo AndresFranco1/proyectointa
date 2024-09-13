@@ -20,7 +20,7 @@
         <div class="image-gallery">
             {% for imagen in imagenes %}
                 <div class="image-container">
-                    <img src="{{ imagen.imagen.url }}" alt="Imagen subida"data-description="{{ imagen.descripcion }}">
+                    <img src="{{ imagen.imagen.url }}" alt="Imagen subida" data-description="{{ imagen.descripcion }}">
                     <form method="POST" action="{% url 'eliminar_imagen' imagen.id %}" class="delete-form" onsubmit="confirmarEliminacion(event)">
                         {% csrf_token %}
                         <button type="submit" class="delete-button"><i class="fas fa-trash"></i></button>
@@ -29,10 +29,6 @@
             {% empty %}
                 <p>No hay imágenes subidas aún.</p>
             {% endfor %}
-        </div>
-        <div id="modal" class="modal">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <img class="modal-content" id="modal-img">
         </div>
         <div id="modal" class="modal">
             <span class="close" onclick="closeModal()">&times;</span>
