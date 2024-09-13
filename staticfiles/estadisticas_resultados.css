@@ -1,0 +1,107 @@
+/* Estilo general para el cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eaf2f1;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilo del título */
+.title {
+    text-align: center;
+    text-decoration: underline;
+    color: #2c3e50; /* Color más suave */
+    font-size: 2.5rem;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+    transition: color 0.3s, text-shadow 0.3s; /* Transición suave */
+}
+
+.title:hover {
+    color: #1abc9c; /* Cambia el color del texto al pasar el mouse */
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* Intensifica la sombra */
+}
+
+/* Encabezado principal */
+
+/* Título de cada pregunta */
+h2 {
+    color: #16a085;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+/* Párrafo para el total de respuestas */
+p {
+    font-size: 18px;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+}
+
+/* Lista de porcentajes */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Elementos de la lista */
+ul li {
+    margin: 5px 0;
+}
+
+/* Contenedor del bloque de pregunta */
+.pregunta-block {
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    align-items: center; /* Alinea los elementos al centro horizontalmente */
+    flex: 1 1 calc(50% - 20px); /* Dos columnas, menos el espacio del gap */
+    box-sizing: border-box; /* Incluye el padding y borde en el tamaño total del elemento */
+    margin-bottom: 20px; /* Espacio debajo de cada bloque */
+}
+
+/* Contenedor de gráficos y referencias */
+.grafico-y-referencias {
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    align-items: center; /* Alinea los elementos al centro horizontalmente */
+    gap: 10px; /* Espacio entre las referencias y el gráfico */
+}
+
+/* Canvas de gráficos de torta */
+.grafico-torta {
+    width: 100%; /* Ajusta el ancho del gráfico al 100% del contenedor */
+    max-width: 300px; /* Tamaño máximo del gráfico */
+    height: auto; /* Mantiene la proporción del gráfico */
+    margin-bottom: 10px; /* Espacio debajo del gráfico */
+}
+
+/* Contenedor de preguntas */
+.preguntas-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre los bloques */
+}
+
+/* Estilos de responsividad */
+@media (max-width: 768px) {
+    .grafico-torta {
+        width: 80%; /* Ajusta el ancho del gráfico en dispositivos pequeños */
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    ul {
+        font-size: 14px;
+    }
+}

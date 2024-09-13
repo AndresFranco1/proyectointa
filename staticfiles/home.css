@@ -1,0 +1,319 @@
+/* General styles */
+body {
+    background-color: #d6eee3; /* Fondo suave */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Asegura que el cuerpo ocupe el 100% de la altura de la ventana */
+}
+
+/* Contenedor principal */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente el contenido */
+    align-items: center; /* Centra horizontalmente el contenido */
+    width: 100%;
+}
+
+/* Title styles */
+/* Estilos para el Header */
+.main-header {
+    background: linear-gradient(rgba(26, 188, 156, 0.7), rgba(39, 174, 96, 0.7)), url('https://images.unsplash.com/photo-1503264116251-35a269479413') center/cover;
+    padding: 30px 0;
+    text-align: center;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    margin-top: 50px; /* Aquí añadimos el margen superior */
+}
+
+/* Animación de fondo */
+.main-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3), transparent);
+    animation: pulse 6s infinite;
+    z-index: 1;
+}
+
+/* Animación sutil para un efecto dinámico */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+}
+
+/* Estilo de Título */
+.main-header .title {
+    
+    font-size: 3.5em;
+    font-weight: 700;
+    letter-spacing: 2px;
+    z-index: 2;
+    position: relative;
+    text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para destacar el texto */
+}
+
+/* Subtítulo */
+.main-header h3 {
+    font-size: 1.8em;
+    font-weight: 500;
+    z-index: 2;
+    position: relative;
+    margin-top: 10px;
+    color: #ecf0f1;
+    letter-spacing: 1px;
+    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Efecto suave cuando el usuario entra */
+.main-header .title, 
+.main-header h3 {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 1.5s ease-in-out forwards;
+}
+
+/* Animación para los títulos */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    color: #2c3e50; /* Color del texto principal */
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 15px; /* Reducir espacio inferior */
+}
+
+/* Category grid styles */
+.categories {
+    width: 90%; /* Usar 90% del ancho disponible */
+    margin: 10px auto;  /* Reducir espacio entre el título y las categorías */
+}
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 30px; /* Espacio horizontal entre los bloques */
+    row-gap: 20px; /* Espacio vertical entre los bloques */
+    justify-content: center; /* Centra la grilla horizontalmente */
+}
+
+/* Aquí aplicamos el recuadro blanco */
+.category-grid a {
+    display: flex; /* Flexbox para alinear ícono y texto horizontalmente */
+    align-items: center; /* Centra verticalmente ícono y texto */
+    justify-content: center; /* Centra el contenido en el enlace */
+    text-decoration: none; /* Elimina el subrayado del texto */
+    background-color: #ffffff; /* Fondo blanco */
+    color: #2c3e50; /* Color del texto */
+    padding: 15px; /* Añade algo de espacio dentro del recuadro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar efecto de botón */
+    transition: background-color 0.3s, transform 0.3s;
+    width: 100%; /* Asegura que ocupe el 100% del espacio disponible */
+    max-width: 250px; /* Máximo ancho para que no se estire demasiado */
+}
+
+/* Ícono más grande con espacio a la derecha */
+.category-item {
+    font-size: 2rem; /* Aumenta el tamaño de los íconos */
+    margin-right: 10px; /* Espacio entre ícono y texto */
+}
+
+.category-grid span {
+    font-size: 1.2rem; /* Tamaño de la fuente del texto */
+    font-weight: bold; /* Hace el texto más prominente */
+}
+
+/* Efecto hover */
+.category-grid a:hover {
+    background-color: #1abc9c; /* Fondo verde en hover */
+    color: #fff; /* Cambia el color del texto e ícono en hover */
+    transform: scale(1.05); /* Hace que el enlace crezca un poco en hover */
+}
+
+
+/* Video container */
+.video-container {
+    width: 90%;
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+    background-color: #ecf0f1; /* Fondo claro */
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+video {
+    width: 100%;
+    max-width: 1000px;
+    border: 2px solid #2c3e50;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+video:hover {
+    transform: scale(1.02); /* Ligero zoom al pasar el cursor */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Aumenta la sombra */
+}
+
+/* Agregar un ícono de reproducción estilizado cuando el video está pausado */
+.video-container::before {
+    content: '▶';
+    position: absolute;
+    color: rgba(255, 255, 255, 0.884);
+    font-size: 80px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+video.paused + .video-container::before {
+    opacity: 1;
+}
+
+
+/* Image container styles */
+.image-container {
+    display: flex;
+    justify-content: space-around; /* Asegura que las imágenes estén simétricamente distribuidas */
+    gap: 20px;
+    width: 90%;
+    margin-bottom: 20px; /* Reducir espacio inferior de las imágenes */
+}
+
+.image-container a {
+    width: 22%; /* Todas las imágenes tendrán un ancho proporcional */
+}
+
+.image-container img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.image-container img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+/*---------------------------------------------------------------------------*/
+
+
+
+/* AGENDA    */
+/* c grid styles */
+.agenda {
+    width: 90%;
+    margin: 20px 0; /* Reducir espacio entre las imágenes y la agenda */
+}
+
+.agenda-grid {
+    display: grid;
+    grid-template-columns: repeat(4, auto); /* 4 columnas */
+    gap: 5px;
+    justify-items: center; /* Centrar los elementos en sus respectivas columnas */
+}
+
+.agenda-item {
+    background-color: #ffffff; /* Fondo gris medio */
+    color: #2c3e50; /* Letra negra */
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    max-width: 100px; /* Asegura que todos los elementos tengan el mismo tamaño */
+}
+.agenda-item img,
+.agenda-item i.category-item {
+    width: 50px; /* Ajusta este valor según el tamaño deseado */
+    height: 50px; /* Hace que las imágenes sean cuadradas */
+    display: block;
+    margin: 0 auto; /* Centra las imágenes e íconos */
+    object-fit: contain; /* Asegura que las imágenes mantengan su proporción dentro del contenedor */
+}
+
+.agenda-item:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .agenda-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .agenda-item img,
+    .agenda-item i.category-item {
+        width: 50px; /* Tamaño más pequeño en pantallas pequeñas */
+        height: 50px;
+    }
+
+    .image-container {
+        flex-direction: column; /* Las imágenes estarán una encima de la otra */
+        align-items: center;
+    }
+
+    .image-container a {
+        width: 50%; /* Ajustamos el ancho de las imágenes en pantallas pequeñas */
+    }
+}
+
+
+@media (max-width: 768px) {
+    .category-grid {
+        grid-template-columns: 1fr;
+    }
+    .agenda-grid {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+}
+
+.bi-instagram {
+    color: #E4405F; /* Color oficial de Instagram */
+}
+
+.bi-youtube {
+    color: #FF0000; /* Color oficial de YouTube */
+}

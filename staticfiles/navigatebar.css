@@ -1,0 +1,72 @@
+body {
+    background: black;
+    color: whitesmoke;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background: black;
+    padding: 8px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.container {
+    padding-top: 50px;
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    list-style: none;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar ul li a i {
+    font-size: 2rem;
+}
+
+.navbar ul li a:hover {
+    color: aquamarine;
+}
+
+@media (max-width: 768px) {
+    .navbar ul {
+        justify-content: space-between; /* Mantén los elementos distribuidos uniformemente */
+        flex-wrap: nowrap; /* Evita que se apilen uno encima del otro */
+        overflow-x: auto; /* Permite el desplazamiento horizontal si es necesario */
+    }
+
+    .navbar ul li {
+        flex: 1 1 auto; /* Los elementos ocupan el mismo espacio disponible */
+        margin: 0; /* Elimina el margen inferior */
+    }
+
+    .navbar ul li a {
+        font-size: 0.9rem; /* Reduce el tamaño del texto en pantallas pequeñas */
+        padding: 6px 10px; /* Ajusta el padding para ocupar menos espacio */
+    }
+
+    .navbar ul li a i {
+        font-size: 1.5rem; /* Reduce el tamaño de los íconos */
+    }
+}

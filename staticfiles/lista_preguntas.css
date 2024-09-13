@@ -1,0 +1,70 @@
+body {
+    background-color: #d6eee3; /* Color de fondo del cuerpo de la página */
+    font-family: Arial, sans-serif; /* Fuente más atractiva */
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo del título */
+.title {
+    text-align: center;
+    text-decoration: underline;
+    color: #2c3e50; /* Color más suave */
+    font-size: 2.5rem;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+    transition: color 0.3s, text-shadow 0.3s; /* Transición suave */
+}
+
+.title:hover {
+    color: #1abc9c; /* Cambia el color del texto al pasar el mouse */
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* Intensifica la sombra */
+}
+
+/* Estilo de la lista de preguntas */
+.preguntas-list {
+    list-style-type: none; /* Elimina los puntos de la lista */
+    padding: 0;
+    margin: 0;
+}
+
+.pregunta-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 10px 0;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between; /* Alinea los elementos horizontalmente */
+    align-items: center; /* Alinea verticalmente el botón con el texto */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.pregunta-item:hover {
+    background-color: #e0f7fa;
+}
+
+.pregunta-texto {
+    font-size: 18px;
+    color: #333;
+}
+
+.eliminar-form {
+    margin-left: 20px; /* Añade un margen entre el texto y el botón eliminar */
+}
+
+.eliminar-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.eliminar-btn:hover {
+    background-color: #c0392b;
+}

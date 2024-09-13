@@ -1,0 +1,79 @@
+body {
+    background-color: #e0f7fa; /* Color de fondo más amigable para niños */
+    font-family: 'Comic Sans MS', Arial, sans-serif; /* Fuente más informal */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 800px; 
+    max-width: 100%; 
+    background-color: #ffffff; 
+    padding: 20px; 
+    box-sizing: border-box;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.title {
+    text-align: center;
+    margin: 20px 0;
+    color: #ff5722; /* Color vibrante para el título */
+    font-size: 26px;
+}
+
+p {
+    color: #2e7d32; /* Verde natural */
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.header-image {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 200px;
+    border-radius: 10px;
+}
+
+.content-image {
+    display: block;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+}
+
+.arrow {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.arrow-icon {
+    color: #ff5722; 
+    font-size: 2.5rem;
+    transition: transform 0.3s;
+}
+
+.arrow-icon:hover {
+    transform: scale(1.3); 
+}
+
+/* Responsivo */
+@media (max-width: 620px) {
+    .container {
+        width: 95%; 
+        padding: 15px; 
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .content-image {
+        max-width: 100%;
+    }
+}
