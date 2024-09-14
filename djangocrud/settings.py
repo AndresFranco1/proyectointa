@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-lv2gqmc)cz(&v_--wz6x3lqi2^-#ug_o3fz=s00a+hi3bm6j_i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['proyectointa-11.onrender.com']
+ALLOWED_HOSTS = ['proyectointa.onrender.com']
 # ALLOWED_HOSTS = []
 
 
