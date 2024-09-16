@@ -58,7 +58,7 @@ def signup(request):
             )
             user.set_password(form.cleaned_data["password"])
             user.set_password(form.cleaned_data["password2"])
-            
+            login(request, user)
             user.save()
 
             return  redirect('home')
