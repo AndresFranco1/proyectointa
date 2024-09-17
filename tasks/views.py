@@ -6,6 +6,8 @@ from django.contrib.auth import login,logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+
 
 @login_required(login_url='/login/')
 def game(request):
@@ -261,11 +263,13 @@ def puntuar_pregunta(request):
                     puntuacion = estrellas
                 )
         #imagenes
-            form = ImagenForm(request.POST, request.FILES)
-            if form.is_valid():
-                form.save()
+        form = ImagenForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
                 
-        return redirect("home")
+            return redirect("home")
+        else:
+            return HttpResponse("Formulario de imagen inválido", status=400)
     else:
         preguntas = Pregunta.objects.all()
         form = PuntarPreguntasForm()
