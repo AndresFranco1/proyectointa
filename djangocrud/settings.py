@@ -12,42 +12,54 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 # settings.py
 from pathlib import Path
-import os
-from storages.backends.s3boto3 import S3Boto3Storage
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import os # librería para intereactuar con el sistema operativo
 
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+BASE_DIR = Path(__file__).resolve().parent.parent #define la ruta base del proyecyo usando Path,  apunta a "djangocrud"
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+# CONFIGUARCIÓN DE DIRECTORIOS PARA ARCHIVOS ESTÁTICOS (css,js, cosas "no volátiles")
+STATIC_URL = '/static/' # url basica para poder acceder a los archivos estáticos
+STATICFILES_DIRS = [BASE_DIR / "static"] #directorio en donde se encuentarn los arhivos estáticos para desarrollo (cuando la pagina es accesible solo al local)
+STATIC_ROOT = BASE_DIR / "staticfiles" #directorio en donde se encuentarn los arhivos estáticos para prducción (cuando la pagina es accesible para usuarios)
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-lv2gqmc)cz(&v_--wz6x3lqi2^-#ug_o3fz=s00a+hi3bm6j_i'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# CONFIGURACIÓN DE DIRECTORIOS PARA ARCHIVOS MULTIMEDIA (subidos por el usuario, "volátiles")
+MEDIA_URL = '/media/' # url básico para acceder a los archivos multimedia 
+MEDIA_ROOT = BASE_DIR / "media" #directorio en donde se encuentra los archivos multimedia que son subidos por el usuario (producción)
 
-ALLOWED_HOSTS = ['proyectointa.onrender.com']
+
+# CONFIGURACIÓN PARA EL INICIO DE SESIÓN
+LOGIN_URL = '/login/'# los usarios que no están registrados e intentant acceder a vistas protegidas son redirigidos al login
+
+# MODELO PERSONALIZADO PARA CREAR USUARIOS
+AUTH_USER_MODEL = 'tasks.Usuario' # la aplicación tasks crea usuarios a partir del modelo Usuario
+
+
+
+SECRET_KEY = 'django-insecure-lv2gqmc)cz(&v_--wz6x3lqi2^-#ug_o3fz=s00a+hi3bm6j_i'# tiene como función asegurar la integridad de los datos, firma cookies para evitar q sean manipuladas
+
+# PRODUCCIÓN / DESARROLLO
+
+#DEBUG = False # esto significa que está en producción
+DEBUG = True #para correr en local, siginifa que está en desarrollo
+#ALLOWED_HOSTS = ['proyectointa.onrender.com']#lo usaba con render.com
 # ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
-
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'tasks',
+    'django.contrib.admin', # app de django para el panel de administración
+    'django.contrib.auth', # sistmea de autenticación de django
+    'django.contrib.contenttypes', # soporte para tipod de modelos
+    'django.contrib.sessions', #gestion de sesiones
+    'django.contrib.messages', # framework de mensajes
+    'django.contrib.staticfiles', # manejo de archivos estáticos
+    'tasks', #nuestra aplicación personalizada tasks
+
 ]
 
 MIDDLEWARE = [
@@ -58,19 +70,19 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-ROOT_URLCONF = 'djangocrud.urls'
+# CONFIGURACIÓN DE URLs
+ROOT_URLCONF = 'djangocrud.urls' # archivo principal que maneja todas las urls de la aplicación
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
+        # 'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        # 'DIRS' es una lista para definir rutas adicionales en donde django despues va a buscar plantillas, si no hay nada, busca en las applicaciones de "INSTALLED_APPS"
+        #le indica a django donde buscar las plantillas html, En este caso es en "templates" ubicada en directorio raiz del proyecto (base_dir)
+        
+        'APP_DIRS': True, #indica que debe buscar plantillas dentro de cada aplicación instalada
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -82,16 +94,14 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'djangocrud.wsgi.application'
+WSGI_APPLICATION = 'djangocrud.wsgi.application'# protoclo que permite que un servidor se comunique con Django por medio de solicitudes http
 
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
+# configuración de la base de datos, por defecto es slqlite3
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3', #motor de la base de datos
+        'NAME': BASE_DIR / 'db.sqlite3',#archivo de la base de datoss
     }
 }
 
@@ -99,27 +109,29 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
+# VALIDADORES DE CONTRASEÑAS
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',#verifica que la contraseña no sea muy similar an usuario/email/x campo
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',# verifica la cantidad de caracteres, en este caso son mínimo 5
         'OPTIONS': {
-            'min_length': 5,  # Cambia este valor a 5
+            'min_length': 5,  
         }
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', #verifica que la contraseña no sean cadenas seguidas como 1234 o qwerty
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', #verifica que la contraseña no sea solo números
     },
 ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
+# CONFIGUARCIÓN DE IDIOMA Y ZONA HORARIA
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -128,40 +140,23 @@ USE_I18N = True
 
 USE_TZ = True
 
-# Configuración de Amazon S3
-AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
-AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME', 'us-weast-2')  # Ajusta según tu región
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-
-# Almacenar archivos multimedia en S3
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-
-STATIC_URL = '/static/'
-LOGIN_URL = '/login/'
-
-
-
-AUTH_USER_MODEL = 'tasks.Usuario'
-# Configura STATIC_ROOT para la carpeta donde Django almacenará los archivos estáticos tras ejecutar collectstatic
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Esto asegura que Django sirva los archivos estáticos correctamente
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'apikey'  # Este es el usuario fijo para SendGrid
-EMAIL_HOST_PASSWORD = 'jasjdnfiaeqowj234'
-DEFAULT_FROM_EMAIL = 'matiaslang124@gmail.com'
+
+
+
+
+#TODO ESTO DE EMAIL NO LO ESTAMOS USANDO PARA NADA
+
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_HOST = 'smtp.sendgrid.net'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
+#EMAIL_HOST_USER = 'apikey'  # Este es el usuario fijo para SendGrid
+#EMAIL_HOST_PASSWORD = 'jasjdnfiaeqowj234'
+#DEFAULT_FROM_EMAIL = 'matiaslang124@gmail.com'
