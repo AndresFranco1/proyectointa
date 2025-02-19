@@ -16,31 +16,6 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* Contenedor de la galería de imágenes */
-.image-gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px; /* Espacio entre las imágenes */
-    justify-content: center;
-}
-
-/* Contenedor de cada imagen */
-.image-container {
-    position: relative;
-    width: 200px; /* Tamaño aumentado de las imágenes */
-    height: 200px;
-    overflow: hidden; /* Ocultar partes que sobresalgan del contenedor */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilo de las imágenes */
-.image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Mantener la proporción y cubrir el área del contenedor */
-    transition: transform 0.3s ease-in-out;
-}
 
 /* Efecto al pasar el cursor */
 .image-container:hover img {
@@ -65,62 +40,130 @@ h1 {
     background: #c0392b;
 }
 
-/* Estilo para la ventana modal */
+
+/* Estilo para el campo de descripción opcional */
+.file-description {
+    position: relative;
+    z-index: 10;
+    font-size: 14px; /* Tamaño de fuente más pequeño para el campo de descripción */
+    color: #2c3e50; /* Color del texto similar al resto de la página */
+    border: 1px solid #ddd; /* Borde suave alrededor del campo */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 8px; /* Espacio interior del campo */
+    width: 100%; /* Hacer que el campo ocupe el ancho disponible */
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+    transition: border-color 0.3s ease; /* Transición suave para el borde al pasar el cursor */
+}
+
+.galeria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.imagen-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+.imagen-container img {
+    max-width: 200px;
+    max-height: 200px;
+    display: block;
+}
+
+
+/* GALERÍA */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+/* CONTENEDOR DE IMAGEN */
+.image-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* IMAGEN CUADRADA */
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+/* DESCRIPCIÓN EN GALERÍA */
+.image-description {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    padding: 8px;
+    box-sizing: border-box;
+    max-height: 50px; /* Aumentado para evitar que se corte */
+    overflow: hidden;
+}
+
+/* MODAL */
 .modal {
-    display: none; /* Ocultar la ventana modal por defecto */
-    position: fixed; /* Fijar la ventana modal en la pantalla */
-    z-index: 1; /* Colocar la ventana modal sobre otros elementos */
+    display: none;
+    position: fixed;
+    z-index: 1000;
     left: 0;
     top: 0;
-    width: 100%; /* Ancho completo de la pantalla */
-    height: 100%; /* Alto completo de la pantalla */
-    overflow: auto; /* Permitir el desplazamiento si es necesario */
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro con opacidad */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-/* Estilo para el contenido de la imagen en la ventana modal */
+/* IMAGEN EN MODAL */
 .modal-content {
-    margin: auto;
-    display: block;
-    width: 80%; /* Ancho de la imagen en la ventana modal */
-    max-width: 700px; /* Ancho máximo de la imagen */
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
 }
 
-/* Estilo para la descripción de la imagen en la ventana modal */
+/* DESCRIPCIÓN EN MODAL */
 .modal-description {
-    color: #fff;
-    font-size: 16px;
-    margin: 15px auto;
+    color: white;
+    font-size: 18px;
     text-align: center;
-    max-width: 700px; /* Ancho máximo de la descripción */
-    padding: 0 10px; /* Espacio lateral para evitar el contacto con el borde */
+    margin-top: 15px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    max-width: 80%;
+    max-height: 100px;
+    overflow: auto;
 }
 
-/* Estilo para el botón de cerrar */
-.close {
+/* BOTÓN CERRAR */
+.close-button {
     position: absolute;
     top: 15px;
-    right: 35px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
+    right: 20px;
+    font-size: 24px;
+    color: white;
+    background: none;
+    border: none;
     cursor: pointer;
+    outline: none;
 }
 
-/* Estilo cuando el cursor pasa sobre el botón de cerrar */
-.close:hover,
-.close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Estilo del contenedor de descripción de imagen en la galería */
-.image-description {
-    font-size: 14px; /* Tamaño de fuente adecuado para la descripción */
-    color: #333; /* Color del texto de la descripción */
-    text-align: center; /* Centrar el texto de la descripción */
-    margin-top: 8px; /* Espacio entre la imagen y la descripción */
-    padding: 0 10px; /* Espacio lateral para evitar el contacto con el borde */
-    overflow-wrap: break-word; /* Romper las palabras largas para evitar desbordamiento */
+.close-button:hover {
+    color: red;
 }

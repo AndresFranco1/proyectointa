@@ -1,55 +1,60 @@
 {% extends 'registration/navigatebar.html' %}
 
 {% block content %}
-{% load static %}
+{% load static %} <!-- Carga las etiquetas de Django para trabajar con archivos estáticos. Esto nos permite generar URLs dinámicas-->
 
 <body>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- configura la página para que sea responsiva y se adapte al tamaño de pantalla del dispositivo -->
         <title>Formulario Escuela</title>
     </head>
-    <form action="/ingresar_escuela/" method="POST" >
-        <link rel="stylesheet" href="{% static 'ingresar_escuela.css' %}">
+
+    <!-- formulario para ingresar una escuela nueva-->
+    <form action="/ingresar_escuela/" method="POST" > 
+        <link rel="stylesheet" href="{% static 'ingresar_escuela.css' %}"><!-- carga el stylesheet desde static/-->
         <h1 class="title">Ingresar escuela nueva</h1>
 
-        {% csrf_token %}
+        {% csrf_token %} <!-- Token de seguridad generado por Django para proteger el formulario contra ataques CSRF (Cross-Site Request Forgery)-->
 
+        <!-- campo para ingresar el nombre de la escuela-->
         <div class="form-group">
-            <label for="nombre_escuela">Nombre Escuela:</label>
-            {{ form.nombre_escuela }}
-            {% if form.nombre_escuela.errors %}
+            <label for="nombre_escuela">Nombre Escuela:</label> 
+            {{ form.nombre_escuela }} <!-- inserta auto el valor que el back genera para este campo, que es "", pero si no está no se muestra el renglón-->
+            {% if form.nombre_escuela.errors %}<!-- testea si hay algun error-->
             <div class="alert alert-danger">
                 <ul>
-                    {% for error in form.nombre_escuela.errors %}
+                    {% for error in form.nombre_escuela.errors %}<!-- itera sobre la lista de errores y los va mostrando-->
                         <li>{{ error }}</li>
                     {% endfor %}
                 </ul>
             </div>
             {% endif %}
         </div>
-    
-    
+
+        <!-- campo para ingresar el Número de la escuela-->
         <div class="form-group">
             <label for="numero_escuela">Número Escuela:</label>
-            {{ form.numero_escuela }}
-            {% if form.numero_escuela.errors %}
+            {{ form.numero_escuela }}<!-- inserta auto el valor que el back genera para este campo, que es ""-->
+            {% if form.numero_escuela.errors %}<!-- testea si hay algun error-->
             <div class="alert alert-danger">
                 <ul>
-                    {% for error in form.numero_escuela.errors %}
+                    {% for error in form.numero_escuela.errors %}<!-- itera sobre la lista de errores y los va mostrando-->
                         <li>{{ error }}</li>
                     {% endfor %}
                 </ul>
             </div>
             {% endif %}
         </div>
+        
+        <!-- campo para ingresar la Dirección de la escuela-->
         <div class="form-group">
             <label for="direccion_escuela">Dirección Escuela:</label>
             {{ form.direccion_escuela }}
             {% if form.direccion_escuela.errors %}
             <div class="alert alert-danger">
                 <ul>
-                    {% for error in form.direccion_escuela.errors %}
+                    {% for error in form.direccion_escuela.errors %}<!-- itera sobre la lista de errores y los va mostrando-->
                         <li>{{ error }}</li>
                     {% endfor %}
                 </ul>
@@ -57,13 +62,14 @@
             {% endif %}
         </div>
     
+        <!-- campo para ingresar la Localidad de la escuela-->
         <div class="form-group">
             <label for="localidad_escuela">Localidad Escuela:</label>
             {{ form.localidad_escuela}}
             {% if form.localidad_escuela.errors %}
             <div class="alert alert-danger">
                 <ul>
-                    {% for error in form.localidad_escuela.errors %}
+                    {% for error in form.localidad_escuela.errors %}<!-- itera sobre la lista de errores y los va mostrando-->
                         <li>{{ error }}</li>
                     {% endfor %}
                 </ul>

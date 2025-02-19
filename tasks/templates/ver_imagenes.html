@@ -18,43 +18,52 @@
     <body>
         <h1>Imágenes Subidas</h1>
         <div class="image-gallery">
-            {% for imagen in imagenes %}
+            {% for imagen in imagenes %}<!-- recorre la lista imagenes que viene del back-->
                 <div class="image-container">
-                    <img src="{{ imagen.imagen.url }}" alt="Imagen subida" data-description="{{ imagen.descripcion }}">
-                    <form method="POST" action="{% url 'eliminar_imagen' imagen.id %}" class="delete-form" onsubmit="confirmarEliminacion(event)">
-                        {% csrf_token %}
+                    <img src="{{ imagen.imagen.url }}" alt="Imagen subida" data-description="{{ imagen.descripcion }} "> <!-- por cada iteración se muestra la imagen en si-->
+                    {% if imagen.descripcion %}<!-- si tiene descripción, entra a mostrarla-->
+                        <p class="image-description"">{{ imagen.descripcion }}</p><!-- descripción q viene del back-->
+                    {% else %}
+                    <p class="image-description">Sin descripción</p>
+                    {% endif %}
+                    <form method="POST" action="{% url 'eliminar_imagen' imagen.id %}" class="delete-form" onsubmit="confirmarEliminacion(event)"><!-- crea un form con el método post para eliminar imágenes con un botón, llama a la url de eliminar_imagne junto a su vista, antes de confirmar la ejecución se ejectua confirmareliminacion(). -->
+                        {% csrf_token %}<!-- Token de seguridad generado por Django para proteger el formulario contra ataques CSRF (Cross-Site Request Forgery)-->
                         <button type="submit" class="delete-button"><i class="fas fa-trash"></i></button>
                     </form>
                 </div>
-            {% empty %}
+            {% empty %}<!-- en caso de q no haya imágenes subidas-->
                 <p>No hay imágenes subidas aún.</p>
             {% endfor %}
         </div>
+        
         <div id="modal" class="modal">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <button class="close-button" onclick="closeModal()">✖</button>
             <img class="modal-content" id="modal-img">
             <div class="modal-description" id="modal-description"></div>
         </div>
-    
+
         <script>
-            // Función para abrir la ventana modal
             function openModal(src, description) {
-                document.getElementById('modal').style.display = 'block';
-                document.getElementById('modal-img').src = src;
-                document.getElementById('modal-description').textContent = description;
+                let modal = document.getElementById('modal');
+                let modalImg = document.getElementById('modal-img');
+                let modalDescription = document.getElementById('modal-description');
+
+                modal.style.display = 'flex';  // Muestra el modal
+                modalImg.src = src;            // Asigna la imagen
+                modalDescription.textContent = description.trim() ? description : "Sin descripción"; 
             }
-    
-            // Función para cerrar la ventana modal
             function closeModal() {
                 document.getElementById('modal').style.display = 'none';
             }
-    
-            // Obtener todas las imágenes y añadirles un evento de clic
+
+            // Agrega eventos a las imágenes
             document.querySelectorAll('.image-container img').forEach(img => {
                 img.addEventListener('click', function() {
-                    openModal(this.src, this.dataset.description);
+                    let description = this.getAttribute('data-description') || "Sin descripción"; // Obtiene la descripción de la imagen
+                    openModal(this.src, description);
                 });
             });
+            
         </script>
     </body>
 {% endblock %}

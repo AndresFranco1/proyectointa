@@ -2,48 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Configura la página para que sea responsiva y se adapte al tamaño de pantalla del dispositivo -->
     <title>Sign Up</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'signin.css' %}">
+    {% load static %}<!-- Carga las etiquetas de Django para trabajar con archivos estáticos. Esto nos permite generar URLs dinámicas-->
+    <link rel="stylesheet" href="{% static 'signin.css' %}"><!-- archivo CSS desde la carpeta static para darle estilo a la pantalla-->
 </head>
 <body>
     <div class="scroll-container"></div>
-    <div class="signup-container">
-        <h2>Registro</h2>
+    <div class="signup-container"><!-- contenedor principal-->
+        <h2>Registro</h2><!-- titulo principalde la pag-->
         <div class="logo-container">
-            <img src="{% static 'images/user-img.svg' %}" alt="User Logo">
+            <img src="{% static 'images/user-img.svg' %}" alt="User Logo"><!-- imagen del usuario desde la carpeta static/images/...-->
         </div>
-        <p>¿Ya estás registrado? <a href="{% url 'login' %}">Ingresar</a></p>
-        <form id="signup-form" action="{% url 'signup' %}" method="POST">
-            {% csrf_token %}
+        <p>¿Ya estás registrado? <a href="{% url 'login' %}">Ingresar</a></p><!-- redirecciona a la la url llamda "login" en el archivo urls.py-->
+        <form id="signup-form" action="{% url 'signup' %}" method="POST"><!-- redirecciona a la la url llamda "signup" en el archivo urls.py-->
+            {% csrf_token %}<!-- Token de seguridad generado por Django para proteger el formulario contra ataques CSRF (Cross-Site Request Forgery)-->
+
+            <!-- campo de entrada para el apellido, solo permite letras, el title muestra un mensaje de error si el usuario no cumple con el patrón, es obligatorio-->
             <div class="form-group">
                 <label for="id_first_name">Nombre</label>
                 <input type="text" id="id_first_name" name="first_name" pattern="[A-Za-z]+" title="El nombre no debe contener números ni símbolos, solo letras." required value="{{ form.first_name.value|default_if_none:'' }}">
                 {% if form.first_name.errors %}
-                    <div class="error">{{ form.first_name.errors }}</div>
+                    <div class="error">{{ form.first_name.errors }}</div><!-- si hay errores de validación que vienen del back se muestran acá-->
                 {% endif %}
             </div>
+            
+            <!-- campo de entrada para el apellido, solo permite letras, el title muestra un mensaje de error si el usuario no cumple con el patrón, es obligatorio-->
             <div class="form-group">
                 <label for="id_last_name">Apellido</label>
                 <input type="text" id="id_last_name" name="last_name" pattern="[A-Za-z]+" title="El apellido no debe contener números ni símbolos, solo letras." required value="{{ form.last_name.value|default_if_none:'' }}">
                 {% if form.last_name.errors %}
-                    <div class="error">{{ form.last_name.errors }}</div>
+                    <div class="error">{{ form.last_name.errors }}</div><!--si hay errores de validación que vienen del back se muestran acá, el form viene desde la vista-->
                 {% endif %}
             </div>
+
+             <!-- campo de entrada para el nombre de usuario -->
             <div class="form-group">
                 <label for="id_username">Nombre de usuario</label>
                 <input type="text" id="id_username" name="username" required value="{{ form.username.value|default_if_none:'' }}">
                 {% if form.username.errors %}
-                    <div class="error">{{ form.username.errors }}</div>
+                    <div class="error">{{ form.username.errors }}</div><!-- si hay errores de validación que vienen del back se muestran acá, el form viene desde la vista-->
                 {% endif %}
             </div>
+
+            <!-- lista desplegable para seleccionar la escuela -->
             <div class="form-group">
                 <label for="id_school">Escuela</label>
                 <select name="school" id="id_school" required>
-                    <option value="">-- Seleccionar Escuela --</option>
-                    {% for school in escuelas %}
-                        {% if school.nombre_escuela != "Inta" %}  <!-- Ocultar la escuela INTA -->
+                    <option value="">-- Seleccionar Escuela --</option><!-- opción predeterminada vacía, para obligar a elegir-->
+                    {% for school in escuelas %}<!-- itera sobre la lista "escuelas" que viene del back-->
+                        {% if school.nombre_escuela != "Inta" %}  <!-- muestra solo las escuelas diferentes de "inta", esta se reserva para admins-->
                             <option value="{{ school.id }}" {% if school.id == form.school.value %} selected{% endif %}>
                                 {{ school.nombre_escuela }}
                             </option>
@@ -54,6 +62,8 @@
                     <div class="error">{{ form.school.errors }}</div>
                 {% endif %}
             </div>
+
+            <!-- campo de entrada para la contraseña, minimo 5 carcteres-->
             <div class="form-group">
                 <label for="id_password">Contraseña</label>
                 <input type="password" id="id_password" name="password" minlength="5" required>
@@ -61,6 +71,7 @@
                     <div class="error">{{ form.password.errors }}</div>
                 {% endif %}
             </div>
+            <!-- segundo campo de entrada de la contraseña para confirmarla-->
             <div class="form-group">
                 <label for="id_password2">Confirmar Contraseña</label>
                 <input type="password" id="id_password2" name="password2" minlength="5" required>
@@ -68,20 +79,24 @@
                     <div class="error">{{ form.password2.errors }}</div>
                 {% endif %}
             </div>
+
+            <!-- botón para enviar el formulario-->
             <button type="submit">Registrarse</button>
             {% for message in messages %}
-                <div class="message">{{ message }}</div>
+                <div class="message">{{ message }}</div><!-- muestra un mensaje a partir del error o éxito del registro-->
             {% endfor %}
         </form>
     </div>
+    
+    <!-- script de js para validar que ambas contraseñas coinciden antes de enviar el form-->
     <script>
-        document.getElementById('signup-form').addEventListener('submit', function(event) {
-            var password = document.getElementById('id_password').value;
+        document.getElementById('signup-form').addEventListener('submit', function(event) {//captura el evento sumbit del form
+            var password = document.getElementById('id_password').value;// obtiene el valor de las contraseñas ingresadas
             var confirmPassword = document.getElementById('id_password2').value;
-            if (password !== confirmPassword) {
+            if (password !== confirmPassword) { // verifica que sean iguales
                 alert('Las contraseñas no coinciden.');
                 event.preventDefault(); // Evita el envío del formulario
-            } else if (password.length < 5) {
+            } else if (password.length < 5) {//verifica que tengan mas de 5carcteres
                 alert('La contraseña debe tener al menos 5 caracteres.');
                 event.preventDefault(); // Evita el envío del formulario
             }

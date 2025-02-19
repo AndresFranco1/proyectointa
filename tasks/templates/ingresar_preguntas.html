@@ -1,17 +1,19 @@
 {% extends 'registration/navigatebar.html' %}
 {% block content %}
-{% load static %}
+{% load static %}<!-- Carga las etiquetas de Django para trabajar con archivos estáticos. Esto nos permite generar URLs dinámicas-->
 <form action="/ingresar_pregunta/" method="POST">
-    <link rel="stylesheet" href="{% static 'ingresar_escuela.css' %}">
-    {% csrf_token %}
+    <!-- cuando se envía el form se hace una peticion post a ingresar_pregunta, y django rutea automaticamente la url asociada a ese nombre, y junto con esta la vista-->
+    <link rel="stylesheet" href="{% static 'ingresar_escuela.css' %}"><!--  carga la hoja de estilos desde la ruta configurada en staticfiles en el settings.py-->
+    {% csrf_token %}<!-- Token de seguridad generado por Django para proteger el formulario contra ataques CSRF (Cross-Site Request Forgery)-->
+
     <h1 class="title">Ingresar pregunta nueva</h1>
     <div class="form-group">
         <label for="texto_pregunta">Texto pregunta:</label>
-        {{ form.texto_pregunta }}
-        {% if form.texto_pregunta.errors %}
+        {{ form.texto_pregunta }}<!-- inserta auto el valor que el back genera para este campo, que es "", pero si no está no se muestra el renglón-->
+        {% if form.texto_pregunta.errors %}<!-- testea si hay algún error-->
         <div class="alert alert-danger">
             <ul>
-                {% for error in form.texto_pregunta.errors %}
+                {% for error in form.texto_pregunta.errors %}<!-- itera sobre la lista de errores y los va mostrando-->
                     <li>{{ error }}</li>
                 {% endfor %}
             </ul>
@@ -19,7 +21,7 @@
         {% endif %}
     </div>
     
-    <button type="submit" class="btn-submit">
+    <button type="submit" class="btn-submit"><!-- botón para mandar la pregunta nueva-->
         Ingresar Pregunta
     </button>
 </form>

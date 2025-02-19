@@ -1,51 +1,57 @@
 {% extends 'registration/navigatebar.html' %}
-
 {% block content %}
-    {% load static %}
+    {% load static %}<!-- Carga las etiquetas de Django para trabajar con archivos estáticos. Esto nos permite generar URLs dinámicas-->
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- configura la página para que sea responsiva y se adapte al tamaño de pantalla del dispositivo -->
         <title>Información de Usuarios</title>
-        <link rel="stylesheet" href="{% static 'info_usuarios.css' %}">
+        <link rel="stylesheet" href="{% static 'info_usuarios.css' %}"><!-- archivo CSS desde la carpeta static para darle estilo a esta pantalla-->
     </head>
     <body>
+        <!-- muestra el total de registrados, contados en el back-->
         <div class="total-usuarios">
             Total de usuarios registrados: {{ total_usuarios }}
         </div>
-        <form method="GET" action="{% url 'info_usuarios' %}">
+        <!-- Form para filtrar usuarios-->
+        <form method="GET" action="{% url 'info_usuarios' %}"><!-- al enviar los datos se envian a la url llamada "info_usuarios" en mi urls.py, eso genera auto la url info_usuarios/ que llama a la view-->
             <label for="escuela">Escuela:</label>
             <select name="escuela" id="escuela">
-                <option value="">-- Seleccionar Escuela --</option>
-                {% for escuela in escuelas %}
+                <option value="">-- Seleccionar Escuela --</option><!-- opción vacía por defecto-->
+                {% for escuela in escuelas %}<!-- itera sobre la lista de escuelas que se toma desde el back-->
                     <option value="{{ escuela.nombre_escuela }}" 
-                        {% if request.GET.escuela == escuela.nombre_escuela %} selected {% endif %}>
+                        {% if request.GET.escuela == escuela.nombre_escuela %} selected {% endif %}><!-- si la escuela i es == a la seleccionada por el usuario, se mantiene seleccionada-->
                         {{ escuela.nombre_escuela }}
                     </option>
                 {% endfor %}
             </select>
 
+            <!-- campo para buscar por nombre-->
             <label for="nombre">Nombre:</label>
             <input type="text" name="first_name" id="nombre" value="{{ request.GET.first_name }}">
 
+            <!-- campo para buscar por Apellido-->
             <label for="apellido">Apellido:</label>
-            <input type="text" name="last_name" id="apellido" value="{{ request.GET.last_name }}">
+            <input type="text" name="last_name" id="apellido" value="{{ request.GET.last_name }}"><!-- esto es para que mantenga los valores ingresados luego de la búsqueda -->
+            
 
+            <!-- campo para buscar por Username-->
             <label for="username">Username:</label>
             <input type="text" name="username" id="username" value="{{ request.GET.username }}">
 
+            <!-- botón para enviar las opciones por las cuales filtrar-->
             <button type="submit">Filtrar</button>
         </form>
 
-        <div class="contenedor">
+        <div class="contenedor"><!-- contiene la tabla para luego mostrar los resultados-->
             <div class="columna">ESCUELA</div>
             <div class="columna">NOMBRE</div>
             <div class="columna">APELLIDO</div>
             <div class="columna">USERNAME</div>
         </div>
 
-        {% for usuario in usuarios %}
+        {% for usuario in usuarios %}<!-- itera sobre la lista de usuarios (filtrada) obtenida desde el back-->
         <div class="contenedor">
-            <div class="columna">{{ usuario.school.nombre_escuela }}</div>
+            <div class="columna">{{ usuario.school.nombre_escuela }}</div><!-- muestra los valores escuela, nombre y username-->
             <div class="columna">{{ usuario.first_name }}</div>
             <div class="columna">{{ usuario.last_name }}</div>
             <div class="columna">{{ usuario.username }}</div>

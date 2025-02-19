@@ -1,17 +1,19 @@
 {% extends 'registration/navigatebar.html' %}
 {% block content %}
-{% load static %}
-    <link rel="stylesheet" href="{% static 'lista_escuelas.css' %}">
+{% load static %}<!-- Carga las etiquetas de Django para trabajar con archivos estáticos. Esto nos permite generar URLs dinámicas-->
+    <link rel="stylesheet" href="{% static 'lista_escuelas.css' %}"><!--  carga la hoja de estilos desde la ruta configurada en staticfiles en el settings.py-->
     <h1 class="lista-escuelas-title">Lista de Escuelas</h1>
     <ul class="lista-escuelas">
-        {% for escuela in escuelas %}
+        {% for escuela in escuelas %} <!-- itera sobre la lista escuelas traidas desde el back-->
             <li class="escuela-item">
                 <div class="escuela-info">
-                    <span class="nombre-escuela">Nombre: {{ escuela.nombre_escuela }}</span>
+                    <span class="nombre-escuela">Nombre: {{ escuela.nombre_escuela }}</span><!-- muestra nombre, num, direc y loc de las escuelas-->
                     <span class="nombre-escuela">Número: {{ escuela.numero_escuela }}</span>
                     <span class="nombre-escuela">Dirección: {{ escuela.direccion_escuela }}</span>
                     <span class="nombre-escuela">Localidad: {{ escuela.localidad_escuela }}</span>
                 </div>
+
+                <!-- form para eliminar escuelas, en el onlick lanza un cartel avisando que si se elimina escuela se eliminan todos sus alumnos, eso está config en los models -->
                 <form class="eliminar-form" action="{% url 'eliminar_escuela' pk=escuela.pk %}" method="post">
                     {% csrf_token %}
                     <button class="eliminar-btn" type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar esta escuela? Junto con ella se eliminarán todos los usuarios asociados');">Eliminar</button>

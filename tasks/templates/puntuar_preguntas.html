@@ -1,22 +1,25 @@
 {% extends 'registration/navigatebar.html' %}
 
 {% block content %}
-{% load static %}
+
 <head>
     <meta charset="UTF-8">
     <title>Puntuación</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'puntuar_preguntas.css' %}">
+    {% load static %}<!-- Carga las etiquetas de Django para trabajar con archivos estáticos. Esto nos permite generar URLs dinámicas-->
+    <link rel="stylesheet" href="{% static 'puntuar_preguntas.css' %}"><!--  carga la hoja de estilos desde la ruta configurada en staticfiles en el settings.py-->
 </head>
 <body>
     <h1>Contanos tu experiencia</h1>
-    <form method="POST" action="/puntuar_pregunta/" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% for pregunta in preguntas %}
+    <form method="POST" action="/puntuar_pregunta/" enctype="multipart/form-data"><!-- se crea un form que cuando se envía, se hace pro mediio del método post. Se envían a la url puntuar_pregunta-->
+        {% csrf_token %}<!-- Token de seguridad generado por Django para proteger el formulario contra ataques CSRF (Cross-Site Request Forgery)-->
+        {% for pregunta in preguntas %} <!-- itera sobre la lista de preguntas de el back-->
             <div class="question">
-                <h3>{{ pregunta.texto_pregunta }}</h3>
+                <h3>{{ pregunta.texto_pregunta }}</h3><!-- se muestra el texto de cada una de las iteraciones-->
                 <div class="star-rating">
+                    <!-- se genera un sistema de calificación-->
                     <input type="radio" id="estrellas_{{ pregunta.id }}_5" name="estrellas_{{ pregunta.id }}" value="5">
+                    <!-- cada estrella se genera con el id único de cada pregunta, tanto el id como el name. Esto asegura que cada califiación sea independiente para cada pregunta-->
                     <label for="estrellas_{{ pregunta.id }}_5"><i class="fas fa-star"></i></label>
                     <input type="radio" id="estrellas_{{ pregunta.id }}_4" name="estrellas_{{ pregunta.id }}" value="4">
                     <label for="estrellas_{{ pregunta.id }}_4"><i class="fas fa-star"></i></label>
@@ -27,29 +30,37 @@
                     <input type="radio" id="estrellas_{{ pregunta.id }}_1" name="estrellas_{{ pregunta.id }}" value="1">
                     <label for="estrellas_{{ pregunta.id }}_1"><i class="fas fa-star"></i></label>
                 </div>
-        {% endfor %}
+        {% endfor %}<!-- finaliza el for-->
 
-
+        <!-- SECCIÓN PARA SUBIR IMÁGNES-->
         <h2 class="subtitulo">Mostranos tu experiencia</h2>
         <div class="image-upload">
                 <div class="file-upload">
+                    <!-- campo para subir archivos de imagen-->
                     <input type="file" id="imagen" name="imagen" class="file-input">
-                    <button type="button" class="file-button" onclick="document.getElementById('imagen').click()">Seleccionar archivo</button>
+
+                    
+                    <button type="button" class="file-button" onclick="document.getElementById('imagen').click()">Seleccionar archivo</button><!-- en el onclick se activa para que el susuario pueda seleccionar una archivo imagen , en casp de que no haya nda muestra "no se ha seleccionado..." Se actualiza dinámicamente con el script de abajo-->
                     <div id="file-name" class="file-name">No se ha seleccionado ningún archivo</div>
                 </div>
                 <div class="file-upload">
-                    <label for="descripcion" class="file-label">Descripción (opcional):</label>
-                    {{ imagen_form.descripcion }}
+                    <label for="descripcion" class="file-label">Descripción (opcional):</label> <!-- label apra ladescripción de la imagen -->
+                    {{ imagen_form.descripcion }} <!-- campo de entrada donde el usuario puede agregar la descripción o no-->
                 </div>
 
         </div>
-
-        <button type="submit" class="file-button">Enviar</button>
+        <li class="error-message">{{ error }}</li>
+        <button type="submit" class="file-button">Enviar</button><!-- botón para enviar el form-->
     </form>
-    <script>
+    <script>// script para acutalizar el nombre del archivo que se va a subir 
+    
         document.getElementById('imagen').addEventListener('change', function() {
+            // se agrega un evento que escucha los cambiosen el inpur "imagen". Cuando el user selecciona algúnarchivo distinto
             var fileName = this.files.length > 0 ? this.files[0].name : 'No se ha seleccionado ningún archivo';
+            // se obtiene el nombre del archivo subido
+            //en caso de q no suba nada, se mantiene el "no se ha seleccioando..."
             document.getElementById('file-name').textContent = fileName;
+            // se actualiza el contenido con el nombre obtenido
         });
     </script>
     

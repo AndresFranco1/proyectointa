@@ -1,61 +1,61 @@
-{% extends 'registration/navigatebar.html' %}
-{% block content %}
-{% load static %}
+{% extends 'registration/navigatebar.html' %}<!-- herda la navigatebar-->
+{% block content %}<!-- inicio del bloque de contenido-->
+{% load static %}<!-- Carga las etiquetas de Django para trabajar con archivos estáticos. Esto nos permite generar URLs dinámicas-->
 <head>
     <title>Resultados de Puntuaciones</title>
-    <link rel="stylesheet" href="{% static 'estadisticas_resultados.css' %}">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{% static 'estadisticas_resultados.css' %}"><!-- archivo CSS desde la carpeta static para darle estilo a esta pantalla-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- libreria chart.js para los gráficos-->
 
 </head>
 <body>
     <h1 class="title">Resultados</h1>
-    <div class="preguntas-container">
-        {% for resultado in resultados %}
-            <div class="pregunta-block">
-                <h2>{{ resultado.pregunta.texto_pregunta }}</h2>
-                <p>Total de respuestas: {{ resultado.total_respuestas }}</p>
-                <div class="grafico-y-referencias">
-                    <ul class="porcentajes" >
-                        <li>1 estrella: {{ resultado.conteos.1 |default_if_none:"0"|safe }} ({{ resultado.porcentajes.1 }}%)</li>
+    <div class="preguntas-container"><!-- contenedor con todas las preguntas-->
+        {% for resultado in resultados %}<!-- itera sobre los resultados obtenidos desde el back-->
+            <div class="pregunta-block"><!-- div que contiene cada pregunta con su respectivo resultado-->
+                <h2>{{ resultado.pregunta.texto_pregunta }}</h2><!-- texto de la pregunta-->
+                <p>Total de respuestas: {{ resultado.total_respuestas }}</p><!-- cant de respuestas -->
+                <div class="grafico-y-referencias"><!-- div para el grafico-->
+                    <ul class="porcentajes" ><!-- lista desordenada  con los resultados -->
+                        <li>1 estrella: {{ resultado.conteos.1 |default_if_none:"0"|safe }} ({{ resultado.porcentajes.1 }}%)</li><!-- muestra la cantidad de respuestas y el porcentaje-->
                         <li>2 estrellas: {{ resultado.conteos.2 |default_if_none:"0"|safe }} ({{ resultado.porcentajes.2 }}%)</li>
                         <li>3 estrellas: {{ resultado.conteos.3 |default_if_none:"0"|safe }} ({{ resultado.porcentajes.3 }}%)</li>
                         <li>4 estrellas: {{ resultado.conteos.4 |default_if_none:"0"|safe }} ({{ resultado.porcentajes.4 }}%)</li>
                         <li>5 estrellas: {{ resultado.conteos.5 |default_if_none:"0"|safe }} ({{ resultado.porcentajes.5 }}%)</li>
                     </ul>
-                    <canvas id="graficoTorta{{ forloop.counter }}" class="grafico-torta"></canvas>
+                    <canvas id="graficoTorta{{ forloop.counter }}" class="grafico-torta"></canvas> <!-- contendor de cada gráfico, canvas es una etiqueta html que sirve para gráficos en app webs -->
                     <script>
-                        var ctx = document.getElementById('graficoTorta{{ forloop.counter }}').getContext('2d');
-                        var graficoTorta = new Chart(ctx, {
-                            type: 'pie',
+                        var ctx = document.getElementById('graficoTorta{{ forloop.counter }}').getContext('2d');//obtiene la etiqueta canvas con el id unico generado automáticamente, lo dibuja en 2d
+                        var graficoTorta = new Chart(ctx, {// inicializa un gráfico en el canvas, ctx tiene el id único de cada gráfico
+                            type: 'pie', //define el tipo de gráfico
                             data: {
-                                labels: ['1 estrella', '2 estrellas', '3 estrellas', '4 estrellas', '5 estrellas'],
+                                labels: ['1 estrella', '2 estrellas', '3 estrellas', '4 estrellas', '5 estrellas'],//define las categorias
                                 datasets: [{
                                     data: [
-                                        {{ resultado.conteos.1|default_if_none:"0"|safe }},
+                                        {{ resultado.conteos.1|default_if_none:"0"|safe }},// resultado del conteo de cada categoria, si es nulo lo pone en 0
                                         {{ resultado.conteos.2|default_if_none:"0"|safe }},
                                         {{ resultado.conteos.3|default_if_none:"0"|safe }},
                                         {{ resultado.conteos.4|default_if_none:"0"|safe }},
                                         {{ resultado.conteos.5|default_if_none:"0"|safe }}
                                     ],
-                                    backgroundColor: [
-                                        '#FF6384',
-                                        '#36A2EB',
-                                        '#FFCE56',
-                                        '#4BC0C0',
-                                        '#9966FF'
+                                    backgroundColor: [// color para cada cateogria, la relacion es label1,conteo1,color1
+                                        '#FF6384', //rojo 1 estrella
+                                        '#36A2EB',//azul
+                                        '#FFCE56',//amarillo
+                                        '#4BC0C0',//verde
+                                        '#8E44AD'//morado
                                     ]
                                 }]
                             },
                             options: {
-                                responsive: true,
+                                responsive: true, // hace q el grafico de torta se adapte a cada pantalla
                             }
                         });
                     </script>
                 </div>
             </div>
-        {% endfor %}
+        {% endfor %} <!-- fin del for iteraba los resultados-->
     </div>
 </body>
 
 
-{% endblock %}
+{% endblock %} 

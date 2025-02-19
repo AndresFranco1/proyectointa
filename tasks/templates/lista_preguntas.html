@@ -1,13 +1,15 @@
 
 {% extends 'registration/navigatebar.html' %}
 {% block content %}
-{% load static %}
-    <link rel="stylesheet" href="{% static 'lista_preguntas.css' %}">
+{% load static %}<!-- Carga las etiquetas de Django para trabajar con archivos estáticos. Esto nos permite generar URLs dinámicas-->
+    <link rel="stylesheet" href="{% static 'lista_preguntas.css' %}"><!--  carga la hoja de estilos desde la ruta configurada en staticfiles en el settings.py-->
     <h1 class="title">Lista de preguntas</h1>
     <ul class="preguntas-list">
-        {% for pregunta in preguntas %}
+        {% for pregunta in preguntas %}<!-- itera sobre la lista de preguntras traidas desde el back-->
             <li class="pregunta-item">
-                <span class="pregunta-texto">{{ pregunta.texto_pregunta }}</span>
+                <span class="pregunta-texto">{{ pregunta.texto_pregunta }}</span><!-- escribe el texto-pregunta de elemento de la lista-->
+                
+                 <!-- form para eliminar preguntas, en el onlick lanza un cartel avisando que si se la pregunta se eliminan todas sus respuestas, eso está config en los models -->
                 <form class="eliminar-form" action="{% url 'eliminar_pregunta' pk=pregunta.pk %}" method="post">
                     {% csrf_token %}
                     <button class="eliminar-btn" type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar esta pregunta? Junto con ella se eliminarán todas las respuestas asociadas a ella');">Eliminar</button>

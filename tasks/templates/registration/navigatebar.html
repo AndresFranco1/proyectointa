@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
+    {% load static %}<!-- Carga las etiquetas de Django para trabajar con archivos estáticos. Esto nos permite generar URLs dinámicas-->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}INTA Jornada Escolar{% endblock %}</title>
-    <link rel="icon" href="{% static 'images/pagina_logo.png' %}" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura la página para que sea responsiva y se adapte al tamaño de pantalla del dispositivo -->
+    <title>INTA Jornada Escolar</title> <!-- es el titulo que aparece en el navegador-->
+    <link rel="icon" href="{% static 'images/pagina_logo.png' %}" type="image/x-icon"><!-- icono que aparece en el navegador-->
 
 
-    <link rel="stylesheet" href="{% static 'navigatebar.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'navigatebar.css' %}"><!-- archivo CSS desde la carpeta static ara el estilo de la barra de navegación -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"> <!-- Carga estilos de íconos de Bootstrap -->
 </head>
 <body>
-    <div class="container">
-        <nav class="navbar">
-            <ul>
-                <li>
-                    <a aria-current="page" href="{% url 'home' %}">
+    <div class="container"><!-- contenedor principal -->
+        <nav class="navbar"> <!-- barra de navegacion que contiene las partes principales de la pagina-->
+            <ul> <!-- unorden list con todos los elementos-->
+                <li> <!-- elemento de la lista-->
+                    <a aria-current="page" href="{% url 'home' %}"> <!-- el url definido asi para q apunta a enlace "home" de urls.py y no a /home. Da flexibilidad-->
                         <i class="bi bi-house"></i> <!-- Ícono de 'Home' -->
                     </a>
                 </li>
@@ -25,25 +25,28 @@
                         <i class="bi bi-controller"></i>  Ícono de 'Juego' 
                     </a>
                 </li>-->
+
                 <li>
-                    <a href="{% url 'puntuar_preguntas' %}">
+                    <a href="{% url 'puntuar_preguntas' %}"><!-- el url definido asi para q apunta a enlace "puntuar_preguntas" de urls.py y no a /puntuar_preguntas. Da flexibilidad-->
                         <i class="bi bi-star"></i> <!-- Ícono de 'Preguntas' -->
                     </a>
                 </li>
+
                 <li>
                     <a href="{% url 'story' %}">
                         <i class="bi bi-book"></i> <!-- Ícono de 'Historia INTA' -->
                     </a>
                 </li>
+                
                 <li>
-                    <a href="{% url 'settings' %}">
+                    <a href="{% url 'settings' %}"><!-- el url definido asi para q apunta a enlace "settings" de urls.py y no a /settings. Da flexibilidad-->
                         <i class="bi bi-gear"></i> <!-- Ícono de 'Configuración' -->
                     </a>
                 </li>
             </ul>
         </nav>
 
-        {% block content %}
+        {% block content %}<!-- bloque para el contenido dinamico que sera suministrado por las platnillas hijas a esta-->
         {% endblock %}
     </div>
 </body>

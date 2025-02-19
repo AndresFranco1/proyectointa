@@ -52,23 +52,26 @@ urlpatterns = [
     path('estadisticas_resultados/', views.estadisticas_resultados, name='estadisticas_resultados'),
 
     
-#     # reset password urls
-#     path('reset_password/', 
-#          auth_views.PasswordResetView.as_view(template_name="registration/reset_password.html"), 
-#          name="reset_password"),
+    # reset password urls
+    path('reset_password/', 
+         auth_views.PasswordResetView.as_view(template_name="registration/reset_password.html"), 
+         name="reset_password"),
 
-#     path('reset_password_sent/', 
-#          auth_views.PasswordResetDoneView.as_view(template_name="registration/reset_password_done.html"), 
-#          name="password_reset_done"),
+    path('reset_password_sent/', 
+         auth_views.PasswordResetDoneView.as_view(template_name="registration/reset_password_done.html"), 
+         name="password_reset_done"),
 
-#     path('reset/<uidb64>/<token>/', 
-#          auth_views.PasswordResetConfirmView.as_view(template_name="registration/reset_password_confirm.html"), 
-#          name="password_reset_confirm"),
+    path('reset/<uidb64>/<token>/', 
+         auth_views.PasswordResetConfirmView.as_view(template_name="registration/reset_password_confirm.html"), 
+         name="password_reset_confirm"),
 
-#     path('reset_password_complete/', 
-#          auth_views.PasswordResetCompleteView.as_view(template_name="registration/reset_password_complete.html"), 
-#          name="password_reset_complete"),
-] #+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #durandte DESARROLLO, le permite a django mostrar archivos multimedia desde la carpeta que está especificada en MEDIA_ROOT
+    path('reset_password_complete/', 
+         auth_views.PasswordResetCompleteView.as_view(template_name="registration/reset_password_complete.html"), 
+         name="password_reset_complete"),
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+#durandte DESARROLLO, le permite a django mostrar archivos multimedia desde la carpeta que está especificada en MEDIA_ROOT
 
 # settings.MEDIA_URL --> define el prefijo para acceder a los archvios, toma el valor que este guardado en MEDIA_URL
 # settings.MEDIA_ROOT --> define la ubicación en la que se guardan los archivos multimedia (subidos por el usuario)

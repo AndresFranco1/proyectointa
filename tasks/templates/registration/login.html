@@ -1,36 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"><!-- idioma -->
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Configura la página para que sea responsiva y se adapte al tamaño de pantalla del dispositivo -->
     <title>Log in</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'login.css' %}">
+    {% load static %}<!-- Carga las etiquetas de Django para trabajar con archivos estáticos. Esto nos permite generar URLs dinámicas-->
+    <link rel="stylesheet" href="{% static 'login.css' %}"><!-- Carga el archivo css desde la carpeta de archivos estáticos. La ruta final sería static/home.css ya que busca el archivos .css en el directorio asignado a la variable STATICFILES_DIRS en el settings.py -->
 </head>
 <body>
     <div class="scroll-container"></div>
-    <div class="login-container">
+    <div class="login-container"><!-- contenedor principal del formulario de inicio de sesión-->
         <h2>Inicio de sesión</h2>
-        <div class="logo-container" >
-            <img class="logo-containersvg" src="{% static 'images/user-img.svg' %}" alt="User Logo">
+        <div class="logo-container" ><!-- contenedor para el logo del usuario-->
+            <img class="logo-containersvg" src="{% static 'images/user-img.svg' %}" alt="User Logo"><!-- carga la imagen desde static/images/user.....-->
         </div>
-        <p>¿No estás registrado? <a href="{% url 'signup' %}">Registrarse</a></p>
-        <!-- <p>¿Olvidaste tu contraseña? <a href="{% url 'reset_password' %}">Recuperar</a></p> -->
+        <p>¿No estás registrado? <a href="{% url 'signup' %}">Registrarse</a></p><!-- redirecciona al html para registrarse -->
+        <!-- <p>¿Olvidaste tu contraseña? <a href="{% url 'reset_password' %}">Recuperar</a></p> (NO ANDA EL RECUPERAR, POR ESO ESTÁ COMENTADO) -->
         <form id="login-form" action="{% url 'login' %}" method="POST">
-            {% csrf_token %}
+            <!-- action definido así porque en caso de querer cambiar la url del login simplemente la cambiamos desde el urls.py . De esta manera enviamos los datos a la url llamada "login" y no a /login. Da flexibilidad -->
+            <!-- method POST porque se envían datos sensibles como usuario y contraseña, permite realizar validaciones y devolver la respuesta correspondiente. Si es GET los datos se envian en la url (barra de buscador)-->
+
+            {% csrf_token %}<!-- Token de seguridad generado por Django para proteger el formulario contra ataques CSRF (Cross-Site Request Forgery)-->
             <div class="form-group">
-                <label for="username">Nombre de usuario</label>
-                <input type="text" id="username" name="username" required>
+                <label for="username">Nombre de usuario</label><!-- label describe un campo del formulario, cómo se llama ese campo-->
+                <input type="text" id="username" name="username" required> <!--campo de texto para ingresar el nombre de usuario. required
+                El name=username indica que los datos q sean ingresados en este form se van a mandar al server con el nombre de username, es decir que se van a pdoer acceder bajo ese nombre request.POST['username'])  -->
             </div>
+
             <div class="form-group">
-                <label for="password">Contraseña</label>
-                <input type="password" id="id_password" name="password" required>
+                <label for="password">Contraseña</label><!-- etiqueta para el campo de entrada de contraseña. -->
+                <input type="password" id="id_password" name="password" required><!--campo de texto para ingresar la password del usuario. required -->
             </div>
-            <button type="submit">Ingresar</button>
+
+            <button type="submit">Ingresar</button><!--boton para enviar el form-->
+
         </form>
-        {% if error %}
-            <p style="color:red;">{{ error }}</p>
+
+        {% if error %}<!-- verifica si existe la variable error, q indica q salió algo mal-->
+            <p style="color:red;">{{ error }}</p><!-- muestra en rojo el error que se dispare-->
         {% endif %}
+        
     </div>
 </body>
 </html>

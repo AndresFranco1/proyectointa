@@ -122,7 +122,7 @@ def exit(request):
     return redirect ("login")
 
 #ESCUELAS
-@login_required
+@login_required(login_url='/login/')#login_required es un decorador que solo deja que la función corra si el usuario está validado, si no lo está lo retorna a login_url, en este caso login
 def ingresar_escuela(request):
     if request.method == "POST": #si el método es POST, que significa que usuario está enviando datos, entra al if 
         form = IngresarEscuelaForm(request.POST) # crea una instancia de "IngresarEscuelaForm" con los datos enviados por el usuario
@@ -194,7 +194,7 @@ def info_usuarios(request):
     return render(request, 'info_usuarios.html', context)
 
 #INGERESAR PREGUNTAS
-@login_required
+@login_required(login_url='/login/')#login_required es un decorador que solo deja que la función corra si el usuario está validado, si no lo está lo retorna a login_url, en este caso login
 def ingresar_pregunta(request):
     if request.method == "POST": #si el método es POST, que significa que usuario está enviando datos, entra al if 
         form = IngresarPreguntaForm(request.POST)  # crea una instancia de "IngresarEscuelaForm" con los datos enviados por el usuario
@@ -245,7 +245,7 @@ def modificar_pregunta(request,pk):
             }
         return render(request , "ingresar_pregunta.html",context)
 
-@login_required
+@login_required(login_url='/login/')#login_required es un decorador que solo deja que la función corra si el usuario está validado, si no lo está lo retorna a login_url, en este caso login
 def eliminar_pregunta(request,pk):
 
     if request.method == "POST":
@@ -256,42 +256,59 @@ def eliminar_pregunta(request,pk):
         return redirect("lista_preguntas")
         
 #PUNTUAR PREGUNTAS
-@login_required
+@login_required(login_url='/login/')#login_required es un decorador que solo deja que la función corra si el usuario está validado, si no lo está lo retorna a login_url, en este caso login
 def puntuar_pregunta(request):
     preguntas = Pregunta.objects.all() #obtiene una lista con todos las instancias de la clase Pregunta
+    puntuacion_registrada = False# flags para dsp validar si se subió al menos una
+    imagen_registrada = False
+
     if request.method == 'POST':#si el método es POST, que significa que usuario está enviando datos, entra al if 
-        #puntuaciones
-        for pregunta in preguntas:
-            estrellas = request.POST.get(f"estrellas_{pregunta.id}")#recupera desde el formulario enviado la puntuación de la pregunta actual
-            if estrellas:#verifica si la puntuación es válida
-                Puntuación.objects.create(#crea un objeto Puntuación
-                    pregunta = pregunta,
-                    puntuacion = estrellas
-                )#asocia la pregunta de la iteración con la puntuación
+            #puntuaciones
+            for pregunta in preguntas:
+                estrellas = request.POST.get(f"estrellas_{pregunta.id}")#recupera desde el formulario enviado la puntuación de la pregunta actual
+                if estrellas:#verifica si la puntuación es válida
+                    Puntuación.objects.create(#crea un objeto Puntuación
+                        pregunta = pregunta,
+                        puntuacion = estrellas
+                    )#asocia la pregunta de la iteración con la puntuación
+                    puntuacion_registrada = True
+
                 
-        #imagenes
-        form = ImagenForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-                
-            return redirect("home")
-        else:
-            return HttpResponse("Formulario de imagen inválido", status=400)
+            #imagenes
+            form = ImagenForm(request.POST, request.FILES)#crea una isntancia de imagenform con post para txt y files par imgs
+            if form.is_valid() and request.FILES.get('imagen'):#verifica si el form es válido y de si existe una imagen, sirve para no guardar forms vacios
+                form.save()#guarda el form
+                imagen_registrada = True
+
+
+            if puntuacion_registrada or imagen_registrada: #si al menos un form se respondió, lo envía
+                return redirect("home")
+            else:
+                context = {
+                "error" : "Al menos un campo debe estar completado para que la respuesta sea válida",
+                "preguntas" : preguntas,
+                "form" : form,
+                "imagen_form": ImagenForm
+                }
+                return render(request, "puntuar_preguntas.html", context )
+            
     else:# significa que el método no es POST, sino que GET, indica que el usuario accede a la página
-        preguntas = Pregunta.objects.all()
-        #acá no deberíá también retortarn las instancias imágenes?
-        form = PuntarPreguntasForm()
-        imagen_form = ImagenForm()
+        preguntas = Pregunta.objects.all() #obtiene una lista con todos las instancias de la clase Pregunta
+        form = PuntarPreguntasForm() # crea una instancia de puntuarpreguntaform
+        imagen_form = ImagenForm() # crea una instancia de imagenform
         context = {
             "preguntas" : preguntas,
             "form" : form,
             "imagen_form": imagen_form
         }
         return render(request, "puntuar_preguntas.html", context )
-    
+
+
+
 #IMAGENES
+
 def ver_imagenes(request):
-    imagenes = ImagenUsuario.objects.all()#obtiene una lista con todos las instancias de la clase ImagenUsuario
+    imagenes = ImagenUsuario.objects.all().order_by('-fecha_subida')#obtiene una lista con todos las instancias de la clase ImagenUsuario
     context = {
                'imagenes': imagenes,
                }
@@ -305,7 +322,9 @@ def eliminar_imagen(request, imagen_id):
         # return redirect('ver_imagenes')
     return redirect('ver_imagenes')#redirecciona a la vista ver_imagenes
 
-@login_required   
+
+#ESTADÍSTICAS   
+@login_required(login_url='/login/')#login_required es un decorador que solo deja que la función corra si el usuario está validado, si no lo está lo retorna a login_url, en este caso login
 def estadisticas_resultados(request):
     
     preguntas = Pregunta.objects.all()#obtiene una lista de todas las instancias de la clase Pregunta creadas

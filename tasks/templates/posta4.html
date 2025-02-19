@@ -5,12 +5,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsive-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"><!-- carga la librería de íconos font awwsome-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"><!-- carga los íconos de bootstrap-->
+
+    {% load static %}<!-- Carga las etiquetas de Django para trabajar con archivos estáticos. Esto nos permite generar URLs dinámicas-->
+    <link rel="stylesheet" href="{% static '/posta.css' %}"><!--  carga la hoja de estilos desde la ruta configurada en staticfiles en el settings.py--> 
+
     <title>Estación 4: Ambiente de Juegos</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static '/posta.css' %}">
 </head>
 <body>
     <h2 class="station-title">Estación 4: Ambiente de Juegos</h2>
@@ -32,12 +34,12 @@
             
             <div class="slides">
                 <div class="slide">
-                    <img src="{% static 'images/chocolatada.JPG' %}" alt="Leche chocolatada y alfajor">
+                    <img src="{% static 'images/chocolatada.JPG' %}" alt="Leche chocolatada y alfajor"><!-- static/ruta_a_la_imagen para mostrar las diapositvas-->
                 </div>
             </div>
             
             <div class="carousel-controls">
-                <label for="slide2" class="control-dot"></label>
+                <label for="slide2" class="control-dot"></label><!-- cada label está asociada a cada radio por medio del for=slidex -->
             </div>
         </div>
 
@@ -50,7 +52,8 @@
             <li><strong>Convertirse en un ciudadano responsable:</strong> Recuerda que lo que aprendas hoy te ayudará a ser una persona que cuida el mundo en el futuro. ¡Eso es algo muy importante!</li>
             <li><strong>Pensar en el futuro:</strong> Para que todos podamos seguir jugando y disfrutando de la naturaleza, necesitamos alimentos y tecnologías que no dañen el suelo. ¡Tú puedes ser parte de este futuro!</li>
         </ul>
-
+        
+        <!-- flecha de retorno que redirige a la página principal-->
         <a href="{% url 'home' %}" class="back-link">
             <i class="bi bi-arrow-left-circle-fill arrow-icon"></i> Volver al inicio
         </a>

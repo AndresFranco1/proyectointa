@@ -28,9 +28,11 @@ STATIC_ROOT = BASE_DIR / "staticfiles" #directorio en donde se encuentarn los ar
 
 # CONFIGURACIÓN DE DIRECTORIOS PARA ARCHIVOS MULTIMEDIA (subidos por el usuario, "volátiles")
 MEDIA_URL = '/media/' # url básico para acceder a los archivos multimedia 
-MEDIA_ROOT = BASE_DIR / "media" #directorio en donde se encuentra los archivos multimedia que son subidos por el usuario (producción)
+#MEDIA_ROOT = BASE_DIR / "media" #directorio en donde se encuentra los archivos multimedia que son subidos por el usuario (producción)
 
-
+#TESTEANDO HOY 02/02/25
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#####
 # CONFIGURACIÓN PARA EL INICIO DE SESIÓN
 LOGIN_URL = '/login/'# los usarios que no están registrados e intentant acceder a vistas protegidas son redirigidos al login
 
@@ -44,7 +46,7 @@ SECRET_KEY = 'django-insecure-lv2gqmc)cz(&v_--wz6x3lqi2^-#ug_o3fz=s00a+hi3bm6j_i
 # PRODUCCIÓN / DESARROLLO
 
 #DEBUG = False # esto significa que está en producción
-DEBUG = True #para correr en local, siginifa que está en desarrollo
+DEBUG = True #para correr en local, siginifica que está en desarrollo
 #ALLOWED_HOSTS = ['proyectointa.onrender.com']#lo usaba con render.com
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']

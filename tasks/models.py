@@ -41,7 +41,7 @@ class Escuela(models.Model):
         self.localidad_escuela = self.localidad_escuela.title()
         
     def __str__(self):#devuelve un texto que describe la instancia de la clase (objeto) de manera lejible y comprensible
-        return (self.nombre_escuela, self.numero_escuela,self.direccion_escuela,self.localidad_escuela)
+        return (f"Nombre:{self.nombre_escuela} | Número: {self.numero_escuela} | Dirección:{self.direccion_escuela} | Localidad: {self.localidad_escuela}")
      
 class UsuarioManager(BaseUserManager): #se utuliza porque estamos usando un modelo de usuario personalizado, no el de django. Es el encargado de manejar los diferentes tipo de usuarios que pueden exsitir
    
@@ -90,7 +90,7 @@ class Usuario(AbstractBaseUser,PermissionsMixin):
     REQUIRED_FIELDS = ['first_name','last_name',"school","password"]#campos requeridos para poder crear una instancia, además de USERNAME_FIELD
     
     def __str__(self):#devuelve un texto que describe la instancia de la clase (objeto) de manera lejible y comprensible
-        return self.username
+        return f"Usuario: {self.username} | Nombre : {self.first_name} | Apellido: {self.last_name} | Escuela: {self.school.nombre_escuela}"
     
 
 class Pregunta(models.Model):
@@ -112,6 +112,6 @@ class ImagenUsuario(models.Model):
     imagen = models.ImageField(upload_to='imagenes/')
     descripcion = models.CharField(max_length=255, blank=True)
     fecha_subida = models.DateTimeField(auto_now_add=True)
-
+    
     def __str__(self):#devuelve un texto que describe la instancia de la clase (objeto) de manera lejible y comprensible
-        return f"Imagen subida el {self.fecha_subida}"
+            return f"Fecha: {self.fecha_subida} | Descripción : {self.descripcion}"

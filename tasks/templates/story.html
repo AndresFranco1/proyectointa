@@ -5,16 +5,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- responsive-->
     <title>Sign Up</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'story.css' %}">
+    <link rel="stylesheet" href="{% static 'story.css' %}"><!--  carga la hoja de estilos desde la ruta configurada en staticfiles en el settings.py-->
 </head>
 <body>
     <h1 class="title">Jornada "Desde el Suelo pensemos en el Medio Ambiente"</h1>
     <div class="container">
         
         <img src="{% static 'images/inta_logo.png' %}" alt="INTA Logo" class="header-image"> <!-- Imagen ilustrativa del INTA -->
+
+        <!-- Párrafos con información sobre la jornada educativa -->
         <p>
             ¿Te has preguntado alguna vez por qué el suelo es tan importante? Aunque no lo veamos siempre, el suelo es lo que nos permite tener alimentos, plantas, y animales. ¡Es la base de todo lo que nos rodea! En INTA Rafaela, queremos que los chicos y chicas de las escuelas puedan aprender jugando sobre la importancia del suelo y cómo cuidarlo. Por eso, organizamos una jornada educativa y divertida al aire libre.
         </p>
@@ -33,6 +35,7 @@
         </p>
         <img src="{% static 'images/logo_jornada_avion.jpeg' %}" alt="Evento INTA Rafaela" class="content-image"> <!-- Imagen del evento -->
 
+        <!-- flecha de retorno que redirige a la página principal-->
         <a href="{% url 'home' %}">
             <i class="bi bi-arrow-left-circle-fill arrow-icon"></i>
         </a> 

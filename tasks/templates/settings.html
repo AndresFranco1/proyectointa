@@ -6,27 +6,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'settings.css' %}">
+    {% load static %}<!-- Carga las etiquetas de Django para trabajar con archivos estáticos. Esto nos permite generar URLs dinámicas-->
+    <link rel="stylesheet" href="{% static 'settings.css' %}"><!--  carga la hoja de estilos desde la ruta configurada en staticfiles en el settings.py-->
 </head>
 
 <body>
     <h1 class="title">Configuración</h1>
     
-    {% if user.is_superuser %}
+    {% if user.is_superuser %} <!-- comprueba si el usuario es superusuario-->
         <ul class="nav-item">
-            <li><a href="/info_usuarios" class="nav-link active">Información de Usuarios</a></li>
-            <li><a href="/estadisticas_resultados" class="nav-link active">Estadísticas Resultados</a></li>
-            <li><a href="/ingresar_pregunta" class="nav-link active">Ingresar pregunta</a></li>
-            <li><a href="/lista_preguntas" class="nav-link active">Lista Preguntas</a></li>
-            <li><a href="/ingresar_escuela" class="nav-link active">Ingresar Escuela</a></li>
-            <li><a href="/lista_escuelas" class="nav-link active">Lista Escuelas</a></li>
-            <li><a href="/ver_imagenes" class="nav-link active">Imagenes Subidas</a></li>
+            <li><a href="{% url 'info_usuarios' %}" class="nav-link active">Información de Usuarios</a></li><!-- lleva a la url info_usuarios, que tiene asociada la vista info_usuarios y muestra eso-->
+            <li><a href="{% url 'estadisticas_resultados' %}" class="nav-link active">Estadísticas Resultados</a></li> 
+            <li><a href="{% url 'ingresar_pregunta' %}" class="nav-link active">Ingresar pregunta</a></li>
+            <li><a href="{% url 'lista_preguntas' %}" class="nav-link active">Lista Preguntas</a></li>
+            <li><a href="{% url 'ingresar_escuela' %}" class="nav-link active">Ingresar Escuela</a></li>
+            <li><a href="{% url 'lista_escuelas' %}" class="nav-link active">Lista Escuelas</a></li>
+            <li><a href="{% url 'ver_imagenes' %}" class="nav-link active">Imagenes Subidas</a></li>
         </ul>
         <li>
             <a href="{% url 'logout' %}" class="cerrar-sesion">Cerrar sesión</a>
         </li>
-    {% else %}
+    {% else %}<!-- en caso de no ser superuser, muestra solo el deslogueo-->
         <li>
             <a href="{% url 'logout' %}" class=" cerrar-sesion">Cerrar sesión</a>
         </li>

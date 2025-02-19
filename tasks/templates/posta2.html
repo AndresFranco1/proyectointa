@@ -5,12 +5,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsive-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- carga la librería de íconos font awwsome-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"><!-- carga los íconos de bootstrap-->
+    {% load static %} <!-- Carga las etiquetas de Django para trabajar con archivos estáticos. Esto nos permite generar URLs dinámicas-->
+    <link rel="stylesheet" href="{% static '/posta.css' %}"> <!--  carga la hoja de estilos desde la ruta configurada en staticfiles en el settings.py--> 
     <title>Estación 2: La Carpa Mágica<</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static '/posta.css' %}">
+
 </head>
 <body>
     <h2 class="station-title">Estación 2: La Carpa Mágica</h2>
@@ -22,24 +23,25 @@
 
         <!-- Primer Carrusel: Habitantes del suelo -->
         <div class="carousel">
-            <input type="radio" id="slide1" name="carousel1" checked>
+            <input type="radio" id="slide1" name="carousel1" checked><!-- se utilizan para controlar que imagen se muestra en el carrousel, cada una tieneu n id diferente
+            el name = "carrousel1" sirve para solo una pueda estar seleccionada. El checked indica que ese slide se va a mostar primero-->
             <input type="radio" id="slide2" name="carousel1">
             <input type="radio" id="slide3" name="carousel1">
 
             <div class="slides">
                 <div class="slide">
-                    <img src="{% static 'images/suelo.JPG' %}" alt="Habitantes del suelo">
+                    <img src="{% static 'images/suelo.JPG' %}" alt="Habitantes del suelo"><!-- static/ruta_a_la_imagen para mostrar las diapositvas-->
                 </div>
                 <div class="slide">
                     <img src="{% static 'images/estudio_suelo.JPG' %}" alt="Habitantes del suelo">
                 </div>
                 <div class="slide">
-                    <img src="{% static 'images/suelo_patos.jpeg' %}" alt="Habitantes del suelo">
+                    <img src="{% static 'images/suelo_patos.jpeg' %}" alt="Habitantes del suelo"><!-- static/ruta_a_la_imagen para mostrar las diapositvas-->
                 </div>
             </div>
-
+            <!-- controles del carrusel -->
             <div class="carousel-controls">
-                <label for="slide1" class="control-dot"></label>
+                <label for="slide1" class="control-dot"></label><!-- cada label está asociada a cada radio por medio del for=slidex -->
                 <label for="slide2" class="control-dot"></label>
                 <label for="slide3" class="control-dot"></label>
             </div>
@@ -53,29 +55,32 @@
 
         <!-- Segundo Carrusel: Habitantes del suelo_vacas -->
         <div class="carousel">
-            <input type="radio" id="slide4" name="carousel2" checked>
+            <input type="radio" id="slide4" name="carousel2" checked><!-- se utilizan para controla que imagen se muestra en el carrousel, cada una tieneu n id diferente
+            el name = "carrousel2" sirve para solo una pueda estar seleccionada. El checked indica que ese slide se va a mostar primero-->
             <input type="radio" id="slide5" name="carousel2">
             <input type="radio" id="slide6" name="carousel2">
 
             <div class="slides">
                 <div class="slide">
-                    <img src="{% static 'images/suelo_vacas.JPG' %}" alt="Habitantes del suelo_vacas">
+                    <img src="{% static 'images/suelo_vacas.JPG' %}" alt="Habitantes del suelo_vacas"><!-- static/ruta_a_la_imagen para mostrar las diapositvas-->
                 </div>
                 <div class="slide">
                     <img src="{% static 'images/suelo_vacas1.JPG' %}" alt="Habitantes del suelo_vacas">
                 </div>
                 <div class="slide">
-                    <img src="{% static 'images/suelo_vacas2.JPG' %}" alt="Habitantes del suelo_vacas">
+                    <img src="{% static 'images/suelo_vacas2.JPG' %}" alt="Habitantes del suelo_vacas"><!-- static/ruta_a_la_imagen para mostrar las diapositvas-->
                 </div>
             </div>
-
+            
+            <!-- controles del carrusel -->
             <div class="carousel-controls">
-                <label for="slide4" class="control-dot"></label>
+                <label for="slide4" class="control-dot"></label><!-- cada label está asociada a cada radio por medio del for=slidex -->
                 <label for="slide5" class="control-dot"></label>
                 <label for="slide6" class="control-dot"></label>
             </div>
         </div>
-
+        
+        <!-- flecha de retorno que redirige a la página principal-->
         <a href="{% url 'home' %}" class="back-link">
             <i class="bi bi-arrow-left-circle-fill arrow-icon"></i> Volver al inicio
         </a>
