@@ -24,10 +24,10 @@ def validando_localidad_escuela(localidad_escuela):
         raise ValidationError('La localidad solo puede contener letras.')
 
 def validando_texto_pregunta(texto_pregunta):
-    if not re.match("^[A-Za-z0-9 ¿?¡!]+$", texto_pregunta):
+    if not re.match("^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 ¿?¡!]+$", texto_pregunta):
         #re.match busca ese patrón en el la cadena, si la cadena tiene valores que no están dentro de los parámetros (true) lanza el error
         raise ValidationError("La pregunta solo debe contener letras, números, espacios y los símbolos ¿?¡!.")
-    
+
 class Escuela(models.Model):
     nombre_escuela = models.CharField(max_length = 100, unique= True, validators=[validando_nombre_escuela])#tipo de dato char, de 100 caracteres max, debe ser único. Se valida con la función validando_nombre_escuela
     direccion_escuela = models.CharField(max_length= 100, validators = [validando_direccion_escuela])
